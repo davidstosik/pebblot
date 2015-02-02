@@ -1,163 +1,167 @@
 {
-  "uuid": "31718374-a2be-463e-84a5-efed3a0f006b",
-  "shortName": "Rorschach",
-  "longName": "Rorschach",
-  "companyName": "David Stosik",
-  "versionCode": 1,
-  "versionLabel": "1.0",
-  "watchapp": {
-    "watchface": true
-  },
-  "appKeys": {
-    "dummy": 0
-  },
-  "resources": {
-    "media": [
-      {
-        "file": "images/digits/hours_first_1.png",
-        "name": "HOURS_FIRST_1",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_first_0.png",
-        "name": "HOURS_FIRST_0",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_first_2.png",
-        "name": "HOURS_FIRST_2",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_0.png",
-        "name": "HOURS_LAST_0",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_5.png",
-        "name": "HOURS_LAST_5",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_3.png",
-        "name": "HOURS_LAST_3",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_1.png",
-        "name": "HOURS_LAST_1",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_9.png",
-        "name": "HOURS_LAST_9",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_6.png",
-        "name": "HOURS_LAST_6",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_4.png",
-        "name": "HOURS_LAST_4",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_2.png",
-        "name": "HOURS_LAST_2",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_8.png",
-        "name": "HOURS_LAST_8",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/hours_last_7.png",
-        "name": "HOURS_LAST_7",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_first_1.png",
-        "name": "MINUTES_FIRST_1",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_first_2.png",
-        "name": "MINUTES_FIRST_2",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_first_3.png",
-        "name": "MINUTES_FIRST_3",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_first_0.png",
-        "name": "MINUTES_FIRST_0",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_first_4.png",
-        "name": "MINUTES_FIRST_4",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_first_5.png",
-        "name": "MINUTES_FIRST_5",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_3.png",
-        "name": "MINUTES_LAST_3",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_5.png",
-        "name": "MINUTES_LAST_5",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_0.png",
-        "name": "MINUTES_LAST_0",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_9.png",
-        "name": "MINUTES_LAST_9",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_4.png",
-        "name": "MINUTES_LAST_4",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_2.png",
-        "name": "MINUTES_LAST_2",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_6.png",
-        "name": "MINUTES_LAST_6",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_8.png",
-        "name": "MINUTES_LAST_8",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_1.png",
-        "name": "MINUTES_LAST_1",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/minutes_last_7.png",
-        "name": "MINUTES_LAST_7",
-        "type": "png"
-      }
-    ]
-  }
+    "appKeys": {
+        "dummy": 0
+    },
+    "capabilities": [
+        ""
+    ],
+    "companyName": "David Stosik",
+    "longName": "Rorschach",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/minutes_last_7.png",
+                "name": "MINUTES_LAST_7",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_1.png",
+                "name": "MINUTES_LAST_1",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_8.png",
+                "name": "MINUTES_LAST_8",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_6.png",
+                "name": "MINUTES_LAST_6",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_2.png",
+                "name": "MINUTES_LAST_2",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_4.png",
+                "name": "MINUTES_LAST_4",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_9.png",
+                "name": "MINUTES_LAST_9",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_0.png",
+                "name": "MINUTES_LAST_0",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_5.png",
+                "name": "MINUTES_LAST_5",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_last_3.png",
+                "name": "MINUTES_LAST_3",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_first_5.png",
+                "name": "MINUTES_FIRST_5",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_first_4.png",
+                "name": "MINUTES_FIRST_4",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_first_0.png",
+                "name": "MINUTES_FIRST_0",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_first_3.png",
+                "name": "MINUTES_FIRST_3",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_first_2.png",
+                "name": "MINUTES_FIRST_2",
+                "type": "png"
+            },
+            {
+                "file": "images/minutes_first_1.png",
+                "name": "MINUTES_FIRST_1",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_7.png",
+                "name": "HOURS_LAST_7",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_8.png",
+                "name": "HOURS_LAST_8",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_2.png",
+                "name": "HOURS_LAST_2",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_4.png",
+                "name": "HOURS_LAST_4",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_6.png",
+                "name": "HOURS_LAST_6",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_9.png",
+                "name": "HOURS_LAST_9",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_1.png",
+                "name": "HOURS_LAST_1",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_3.png",
+                "name": "HOURS_LAST_3",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_5.png",
+                "name": "HOURS_LAST_5",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_last_0.png",
+                "name": "HOURS_LAST_0",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_first_2.png",
+                "name": "HOURS_FIRST_2",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_first_0.png",
+                "name": "HOURS_FIRST_0",
+                "type": "png"
+            },
+            {
+                "file": "images/hours_first_1.png",
+                "name": "HOURS_FIRST_1",
+                "type": "png"
+            }
+        ]
+    },
+    "shortName": "Rorschach",
+    "uuid": "31718374-a2be-463e-84a5-efed3a0f006b",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
 }
