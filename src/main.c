@@ -93,6 +93,15 @@ static void window_load(Window *window) {
 
 static void window_unload(Window *window) {
   layer_destroy(main_layer);
+  gbitmap_destroy(hours_first_bitmap);
+  gbitmap_destroy(hours_last_bitmap);
+  gbitmap_destroy(minutes_first_bitmap);
+  gbitmap_destroy(minutes_last_bitmap);
+  bitmap_layer_destroy(hours_first_layer);
+  bitmap_layer_destroy(hours_last_layer);
+  bitmap_layer_destroy(minutes_first_layer);
+  bitmap_layer_destroy(minutes_last_layer);
+  inverter_layer_destroy(inverter_layer);
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
