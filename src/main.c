@@ -3,7 +3,7 @@
 #include "digits.h"
 
 static Window *window;
-static Layer * main_layer;
+static Layer *main_layer;
 static GBitmap *hours_first_bitmap;
 static GBitmap *hours_last_bitmap;
 static BitmapLayer *hours_first_layer;
@@ -12,6 +12,7 @@ static GBitmap *minutes_first_bitmap;
 static GBitmap *minutes_last_bitmap;
 static BitmapLayer *minutes_first_layer;
 static BitmapLayer *minutes_last_layer;
+static InverterLayer *inverter_layer;
 
 
 // static void main_layer_update_proc(struct Layer *layer, GContext *ctx) {
@@ -82,7 +83,10 @@ static void window_load(Window *window) {
     MINUTES_LAST_WIDTH, MINUTES_LAST_HEIGHT
   ));
   layer_add_child(main_layer, bitmap_layer_get_layer(minutes_last_layer));
+
   
+  inverter_layer = inverter_layer_create(GRect(0, 0, bounds.size.w, bounds.size.h));
+  layer_add_child(window_layer, inverter_layer_get_layer(inverter_layer));
   
   update_time();
 }
