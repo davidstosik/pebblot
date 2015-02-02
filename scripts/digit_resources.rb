@@ -2,16 +2,18 @@
 
 require 'json'
 
+
 type = 'png'
 
 files = %w(hours minutes).map do |t|
   %w(first last).map do |p|
-    path = "images/digits/#{t}/#{p}"
-    Dir["./resources/#{path}/*.#{type}"].map do |file|
-      basename = File.basename file, ".#{type}"
+    path = "images/digits"
+    Dir["./resources/#{path}/#{t}_#{p}_*.#{type}"].map do |file|
+      basename = File.basename file
+      no_ext = File.basename file, ".#{type}"
       {
-        file: "#{path}/#{basename}.#{type}",
-        name: "#{t}_#{p}_#{basename}".upcase,
+        file: "#{path}/#{basename}",
+        name: "#{no_ext}".upcase,
         type: type
       }
     end
