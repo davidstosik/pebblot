@@ -1,0 +1,18 @@
+{
+  "uuid": "31718374-a2be-463e-84a5-efed3a0f006b",
+  "shortName": "Rorschach",
+  "longName": "Rorschach",
+  "companyName": "David Stosik",
+  "versionCode": 1,
+  "versionLabel": "1.0",
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": [
+    ]
+  }
+}
