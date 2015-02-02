@@ -23,23 +23,27 @@ static InverterLayer *inverter_layer;
 // }
 
 static void update_time() {
-//   layer_mark_dirty(main_layer);
   if(hours_first_bitmap) gbitmap_destroy(hours_first_bitmap);
   hours_first_bitmap = gbitmap_create_with_resource(hours_first_digit(NULL));
   bitmap_layer_set_bitmap(hours_first_layer, hours_first_bitmap);
+  layer_mark_dirty(bitmap_layer_get_layer(hours_first_layer));
   
   if(hours_last_bitmap) gbitmap_destroy(hours_last_bitmap);
   hours_last_bitmap = gbitmap_create_with_resource(hours_last_digit(NULL));
   bitmap_layer_set_bitmap(hours_last_layer, hours_last_bitmap);
+  layer_mark_dirty(bitmap_layer_get_layer(hours_last_layer));
 
   if(minutes_first_bitmap) gbitmap_destroy(minutes_first_bitmap);
   minutes_first_bitmap = gbitmap_create_with_resource(minutes_first_digit(NULL));
   bitmap_layer_set_bitmap(minutes_first_layer, minutes_first_bitmap);
+  layer_mark_dirty(bitmap_layer_get_layer(minutes_first_layer));
   
   if(minutes_last_bitmap) gbitmap_destroy(minutes_last_bitmap);
   minutes_last_bitmap = gbitmap_create_with_resource(minutes_last_digit(NULL));
   bitmap_layer_set_bitmap(minutes_last_layer, minutes_last_bitmap);
-  
+  layer_mark_dirty(bitmap_layer_get_layer(minutes_last_layer));
+
+//   layer_mark_dirty(main_layer);
 }
 
 static void window_load(Window *window) {
