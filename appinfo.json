@@ -13,6 +13,151 @@
   },
   "resources": {
     "media": [
+      {
+        "file": "images/digits/hours/first/2.png",
+        "name": "HOURS_FIRST_2",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/first/0.png",
+        "name": "HOURS_FIRST_0",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/first/1.png",
+        "name": "HOURS_FIRST_1",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/7.png",
+        "name": "HOURS_LAST_7",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/3.png",
+        "name": "HOURS_LAST_3",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/2.png",
+        "name": "HOURS_LAST_2",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/6.png",
+        "name": "HOURS_LAST_6",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/4.png",
+        "name": "HOURS_LAST_4",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/9.png",
+        "name": "HOURS_LAST_9",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/5.png",
+        "name": "HOURS_LAST_5",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/0.png",
+        "name": "HOURS_LAST_0",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/8.png",
+        "name": "HOURS_LAST_8",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/hours/last/1.png",
+        "name": "HOURS_LAST_1",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/first/3.png",
+        "name": "MINUTES_FIRST_3",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/first/2.png",
+        "name": "MINUTES_FIRST_2",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/first/4.png",
+        "name": "MINUTES_FIRST_4",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/first/5.png",
+        "name": "MINUTES_FIRST_5",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/first/0.png",
+        "name": "MINUTES_FIRST_0",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/first/1.png",
+        "name": "MINUTES_FIRST_1",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/7.png",
+        "name": "MINUTES_LAST_7",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/3.png",
+        "name": "MINUTES_LAST_3",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/2.png",
+        "name": "MINUTES_LAST_2",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/6.png",
+        "name": "MINUTES_LAST_6",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/4.png",
+        "name": "MINUTES_LAST_4",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/9.png",
+        "name": "MINUTES_LAST_9",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/5.png",
+        "name": "MINUTES_LAST_5",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/0.png",
+        "name": "MINUTES_LAST_0",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/8.png",
+        "name": "MINUTES_LAST_8",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/minutes/last/1.png",
+        "name": "MINUTES_LAST_1",
+        "type": "png"
+      }
     ]
   }
 }
