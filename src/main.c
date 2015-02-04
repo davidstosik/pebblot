@@ -1,6 +1,7 @@
 #include <pebble.h>
 #include "dimensions.h"
 #include "digits.h"
+#include "settings.h"
 
 static Window *window;
 static Layer *main_layer;
@@ -28,7 +29,14 @@ static GColor bg_color;
 static GColor fg_color;
 static GCompOp compositing;
 static void init_colors() {
-  bg_color = GColorBlack;
+  bg_color = -1;
+  if (persist_exists(KEY_BGCOLOR)) {
+    bg_color = persist_read_int(KEY_BGCOLOR);
+  }
+  if (bg_color == -1) {
+    //TODO check watch color
+    bg_color = GColorBlack;
+  }
   if (bg_color == GColorBlack) {
     fg_color = GColorWhite;
     compositing = GCompOpAssignInverted;
@@ -175,7 +183,16 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
 }
 
+static void in_recv_handler(DictionaryIterator *received, void *context) {
+  int32_t bgcolor = dict_find(received, KEY_BGCOLOR)->value->int32;
+  persist_write_int(KEY_BGCOLOR, bgcolor);
+}
+
 static void init(void) {
+  // React to settings message from phone
+  app_message_register_inbox_received(in_recv_handler);
+  app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
+
   window = window_create();
   window_set_window_handlers(window, (WindowHandlers) {
     .load = window_load,
