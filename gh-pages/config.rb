@@ -81,5 +81,6 @@ activate :deploy do |deploy|
   deploy.remote   = 'origin'
   deploy.branch   = 'gh-pages'
   deploy.strategy = :submodule
+  deploy.build_before = true
   # deploy.commit_message = 'custom-message'      # commit message (can be empty), default: Automated commit at `timestamp` by middleman-deploy `version`
 end
