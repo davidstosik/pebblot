@@ -16,3 +16,4 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 gem "slim"
 gem "coffee-script"
 gem "bootstrap-sass"
+gem "middleman-deploy", "~> 1.0"
