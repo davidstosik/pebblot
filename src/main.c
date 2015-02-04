@@ -32,10 +32,6 @@ static void load_config() {
   if (persist_exists(KEY_BGCOLOR)) {
     bg_color = persist_read_int(KEY_BGCOLOR);
   }
-  if (bg_color == -1) {
-    //TODO check watch color
-    bg_color = GColorBlack;
-  }
   display = 1;
   if (persist_exists(KEY_DISPLAY)) {
     display = persist_read_int(KEY_DISPLAY);
@@ -48,15 +44,6 @@ static void save_config() {
 
 static GColor fg_color;
 static GCompOp compositing;
-static void init_colors() {
-  if (bg_color == GColorBlack) {
-    fg_color = GColorWhite;
-    compositing = GCompOpAssignInverted;
-  } else {
-    fg_color = GColorBlack;
-    compositing = GCompOpAssign;
-  }
-}
 
 static void symmetry_layer_update_proc(struct Layer *layer, GContext *ctx) {
   
@@ -127,13 +114,41 @@ static void update_time() {
   if(symmetry_layer) layer_mark_dirty(symmetry_layer);
 }
 
+static void refresh_display_options() {
+  if (bg_color == -1) {
+    switch(watch_info_get_color()) {
+      case WATCH_INFO_COLOR_UNKNOWN:
+      case WATCH_INFO_COLOR_BLACK:
+      case WATCH_INFO_COLOR_RED:
+      case WATCH_INFO_COLOR_STAINLESS_STEEL:
+      case WATCH_INFO_COLOR_MATTE_BLACK:
+        bg_color = GColorBlack;
+        break;
+      default:
+        bg_color = GColorWhite;
+        break;
+    }
+  }
+  if (bg_color == GColorBlack) {
+    fg_color = GColorWhite;
+    compositing = GCompOpAssignInverted;
+  } else {
+    fg_color = GColorBlack;
+    compositing = GCompOpAssign;
+  }
+  window_set_background_color(window, bg_color);
+  bitmap_layer_set_compositing_mode(hours_first_layer, compositing);
+  bitmap_layer_set_compositing_mode(hours_last_layer, compositing);
+  bitmap_layer_set_compositing_mode(minutes_first_layer, compositing);
+  bitmap_layer_set_compositing_mode(minutes_last_layer, compositing);
+  layer_set_hidden(symmetry_layer, !display);
+}
+
 static void window_load(Window *window) {
-  init_colors();
-  
   window_set_background_color(window, bg_color);
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
-  
+
   GPoint center = screen_center();
   main_layer = layer_create(GRect(
     center.x - MAIN_LAYER_WIDTH/2,
@@ -171,12 +186,11 @@ static void window_load(Window *window) {
   bitmap_layer_set_compositing_mode(minutes_last_layer, compositing);
   layer_add_child(main_layer, bitmap_layer_get_layer(minutes_last_layer));
 
-  if (display > 0) {
-    symmetry_layer = layer_create(GRect(0, 0, bounds.size.w, bounds.size.h));
-    layer_add_child(window_layer, symmetry_layer);
-    layer_set_update_proc(symmetry_layer, symmetry_layer_update_proc);
-  }
+  symmetry_layer = layer_create(GRect(0, 0, bounds.size.w, bounds.size.h));
+  layer_add_child(window_layer, symmetry_layer);
+  layer_set_update_proc(symmetry_layer, symmetry_layer_update_proc);
 
+  refresh_display_options();
   update_time();
 }
 
@@ -200,6 +214,8 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 static void in_recv_handler(DictionaryIterator *received, void *context) {
   bg_color = (GColor) dict_find(received, KEY_BGCOLOR)->value->int32;
   display = dict_find(received, KEY_DISPLAY)->value->int32;
+  refresh_display_options();
+  update_time();
 }
 
 static void init(void) {
