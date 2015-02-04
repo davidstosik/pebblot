@@ -11,16 +11,29 @@
 
     <script type="text/javascript">
       $(function() {
+        $.urlParam = function(name){
+          var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+          if (!results) { return 0; }
+          return results[1] || 0;
+        }
+
+        var settings = JSON.parse(decodeURIComponent($.urlParam('settings')));
+
+        console.log(settings);
+
+        $.each(settings, function(name, value) {
+          $('[name=' + name + ']').val(value);
+        });
+
         $('form#settings').submit(function(event) {
-          options = {
-            bg_color: parseInt($('select#bg-color').val())
-          }
+          var settings = {};
+          $.each($('form').serializeArray(), function() {
+            settings[this.name] = parseInt(this.value);
+          });
 
-          var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
+          var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(settings));
           console.log(location);
-
           document.location = location;
-
           event.preventDefault();
         });
       });
@@ -28,7 +41,7 @@
   </head>
   <body>
     <form id="settings">
-      <select name="bg-color" id="bg-color">
+      <select name="bgcolor">
         <option value="-1">Auto</option>
         <option value="0">Black</option>
         <option value="1">White</option>

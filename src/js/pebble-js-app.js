@@ -5,20 +5,26 @@ Pebble.addEventListener("ready",
 );
 Pebble.addEventListener("showConfiguration",
   function(e) {
-    //Load the remote config page
-    Pebble.openURL("http://dstosik.github.io/pebble-rorschach/config.html");
+    var config_url = "http://dstosik.github.io/pebble-rorschach/config.html";
+    //config_url = "http://192.168.7.6:8000/gh-pages/config.html"; // Local debug
+
+    var settings = encodeURIComponent(localStorage.getItem("settings"));
+    config_url += '?settings=' + settings;
+
+    console.log("Opening Config: " + config_url);
+    Pebble.openURL(config_url);
   }
 );
 
 Pebble.addEventListener("webviewclosed",
   function(e) {
-    //Get JSON dictionary
-    var configuration = JSON.parse(decodeURIComponent(e.response));
-    console.log("Configuration window returned: " + JSON.stringify(configuration));
+    var settings_string = decodeURIComponent(e.response);
+    console.log("Configuration window returned: " + settings_string);
+    localStorage.setItem("settings", settings_string);
 
     //Send to Pebble, persist there
     Pebble.sendAppMessage(
-      {"bg_color": configuration.bg_color},
+      JSON.parse(settings_string),
       function(e) {
         console.log("Sending settings data...");
       },

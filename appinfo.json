@@ -1,6 +1,6 @@
 {
     "appKeys": {
-      "bg_color": 0
+      "bgcolor": 0
     },
     "capabilities": [
         "configurable"
