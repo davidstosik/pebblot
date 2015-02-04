@@ -2113,7 +2113,10 @@
 
 (function() {
   $(function() {
-    var settings;
+    var delay, settings;
+    delay = function(ms, func) {
+      return setTimeout(func, ms);
+    };
     $.urlParam = function(name) {
       var results;
       results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -2124,9 +2127,20 @@
       }
     };
     settings = JSON.parse(decodeURIComponent($.urlParam('settings')));
-    console.log(settings);
+    settings || (settings = {});
+    $('.debug').append("Received settings: " + JSON.stringify(settings) + "\n");
+    if ($.urlParam('debug')) {
+      $('.debug').removeClass('hidden');
+      $('input#submit').addClass('btn-danger');
+    }
     $.each(settings, function(name, value) {
-      return $('[name=' + name + ']').val(value);
+      var element;
+      element = $("[name=" + name + "]");
+      if (element.attr('type') === 'radio') {
+        return element.filter("[value=" + value + "]").click();
+      } else {
+        return element.val(value);
+      }
     });
     return $('form#settings').submit(function(event) {
       var location;
@@ -2134,9 +2148,15 @@
       $.each($('form').serializeArray(), function() {
         return settings[this.name] = parseInt(this.value);
       });
+      $('.debug').append("Prepared settings: " + JSON.stringify(settings) + "\n");
       location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(settings));
-      console.log(location);
-      document.location = location;
+      $('.debug').append("Returned URL: " + location + "\n");
+      if ($('input#submit').hasClass('btn-danger')) {
+        $('.debug').append("Click again!\n");
+        $('input#submit').removeClass('btn-danger');
+      } else {
+        document.location = location;
+      }
       return event.preventDefault();
     });
   });
