@@ -1,6 +1,7 @@
 {
     "appKeys": {
-      "bgcolor": 0
+      "bgcolor": 0,
+      "display": 1
     },
     "capabilities": [
         "configurable"

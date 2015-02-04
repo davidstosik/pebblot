@@ -26,9 +26,8 @@ static GPoint screen_center() {
 }
 
 static GColor bg_color;
-static GColor fg_color;
-static GCompOp compositing;
-static void init_colors() {
+static int display;
+static void load_config() {
   bg_color = -1;
   if (persist_exists(KEY_BGCOLOR)) {
     bg_color = persist_read_int(KEY_BGCOLOR);
@@ -37,6 +36,19 @@ static void init_colors() {
     //TODO check watch color
     bg_color = GColorBlack;
   }
+  display = 1;
+  if (persist_exists(KEY_DISPLAY)) {
+    display = persist_read_int(KEY_DISPLAY);
+  }
+}
+static void save_config() {
+  persist_write_int(KEY_BGCOLOR, bg_color);
+  persist_write_int(KEY_DISPLAY, display);
+}
+
+static GColor fg_color;
+static GCompOp compositing;
+static void init_colors() {
   if (bg_color == GColorBlack) {
     fg_color = GColorWhite;
     compositing = GCompOpAssignInverted;
@@ -112,7 +124,7 @@ static void update_time() {
   bitmap_layer_set_bitmap(minutes_last_layer, minutes_last_bitmap);
   layer_mark_dirty(bitmap_layer_get_layer(minutes_last_layer));
 
-  layer_mark_dirty(symmetry_layer);
+  if(symmetry_layer) layer_mark_dirty(symmetry_layer);
 }
 
 static void window_load(Window *window) {
@@ -159,10 +171,12 @@ static void window_load(Window *window) {
   bitmap_layer_set_compositing_mode(minutes_last_layer, compositing);
   layer_add_child(main_layer, bitmap_layer_get_layer(minutes_last_layer));
 
-  symmetry_layer = layer_create(GRect(0, 0, bounds.size.w, bounds.size.h));
-  layer_add_child(window_layer, symmetry_layer);
-  layer_set_update_proc(symmetry_layer, symmetry_layer_update_proc);
-  
+  if (display > 0) {
+    symmetry_layer = layer_create(GRect(0, 0, bounds.size.w, bounds.size.h));
+    layer_add_child(window_layer, symmetry_layer);
+    layer_set_update_proc(symmetry_layer, symmetry_layer_update_proc);
+  }
+
   update_time();
 }
 
@@ -176,7 +190,7 @@ static void window_unload(Window *window) {
   bitmap_layer_destroy(hours_last_layer);
   bitmap_layer_destroy(minutes_first_layer);
   bitmap_layer_destroy(minutes_last_layer);
-  layer_destroy(symmetry_layer);
+  if(symmetry_layer) layer_destroy(symmetry_layer);
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
@@ -184,11 +198,13 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 }
 
 static void in_recv_handler(DictionaryIterator *received, void *context) {
-  int32_t bgcolor = dict_find(received, KEY_BGCOLOR)->value->int32;
-  persist_write_int(KEY_BGCOLOR, bgcolor);
+  bg_color = (GColor) dict_find(received, KEY_BGCOLOR)->value->int32;
+  display = dict_find(received, KEY_DISPLAY)->value->int32;
 }
 
 static void init(void) {
+  load_config();
+
   // React to settings message from phone
   app_message_register_inbox_received(in_recv_handler);
   app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
@@ -199,13 +215,15 @@ static void init(void) {
     .unload = window_unload,
   });
   window_stack_push(window, true);
-  
+
   // Register with TickTimerService
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 }
 
 static void deinit(void) {
   window_destroy(window);
+
+  save_config();
 }
 
 int main(void) {
