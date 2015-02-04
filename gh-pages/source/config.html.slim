@@ -19,5 +19,17 @@ javascript: "config"
           option value=1
             |White
 
+    .form-group
+      label.col-sm-3.col-xs-6.control-label for="display"
+        | Display
+      .col-sm-3.col-xs-6
+        select.form-control name="display"
+          option value=0
+            |Simple
+          option value=1
+            |Symmetric
+          option value=2 disabled="true"
+            |Insane
+
     input.btn.btn-primary type="submit" value="Submit"
 
