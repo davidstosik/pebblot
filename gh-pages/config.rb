@@ -1,5 +1,6 @@
 require 'slim'
 require 'coffee-script'
+require 'bootstrap-sass'
 
 ###
 # Compass
@@ -50,11 +51,11 @@ require 'coffee-script'
 #   end
 # end
 
-set :css_dir, 'stylesheets'
+set :css_dir, 'css'
 
-set :js_dir, 'javascripts'
+set :js_dir, 'js'
 
-set :images_dir, 'images'
+set :images_dir, 'img'
 
 # Build-specific configuration
 configure :build do

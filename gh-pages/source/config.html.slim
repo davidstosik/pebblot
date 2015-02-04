@@ -1,0 +1,23 @@
+---
+title: "Settings"
+stylesheet: "config"
+javascript: "config"
+---
+
+.container.text-center
+  h1 = "Pebblot settings"
+  form#settings.form-horizontal
+    .form-group
+      label.col-sm-3.col-xs-6.control-label for="bgcolor"
+        |Background Color
+      .col-sm-3.col-xs-6
+        select.form-control name="bgcolor"
+          option value=-1
+            |Auto
+          option value=0
+            |Black
+          option value=1
+            |White
+
+    input.btn.btn-primary type="submit" value="Submit"
+
