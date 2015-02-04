@@ -49,14 +49,18 @@ static void init_time_struct(struct tm ** time_struct) {
   }
 }
 
-uint32_t hours_first_digit(struct tm * time_struct) {
+uint32_t hours_first_digit(struct tm * time_struct, bool hour12) {
   init_time_struct(&time_struct);
-  return HOURS_FIRST_DIGITS[time_struct->tm_hour / 10];
+  int hour = time_struct->tm_hour;
+  if (hour12) hour = hour%12;
+  return HOURS_FIRST_DIGITS[hour / 10];
 }
 
-uint32_t hours_last_digit(struct tm * time_struct) {
+uint32_t hours_last_digit(struct tm * time_struct, bool hour12) {
   init_time_struct(&time_struct);
-  return HOURS_LAST_DIGITS[time_struct->tm_hour % 10];
+  int hour = time_struct->tm_hour;
+  if (hour12) hour = hour%12;
+  return HOURS_LAST_DIGITS[hour % 10];
 }
 
 uint32_t minutes_first_digit(struct tm * time_struct) {

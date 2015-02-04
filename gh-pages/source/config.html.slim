@@ -4,8 +4,8 @@ stylesheet: "config"
 javascript: "config"
 ---
 
-.container.text-center
-  h1 = "Pebblot settings"
+.container
+  h1.text-center = "Pebblot settings"
   form#settings.form-horizontal
     .form-group
       label.col-sm-3.col-xs-6.control-label for="bgcolor"
@@ -31,5 +31,19 @@ javascript: "config"
           option value=2 disabled="true"
             |Insane
 
-    input.btn.btn-primary type="submit" value="Submit"
+    .form-group
+      label.col-sm-3.col-xs-6.control-label
+        |Hours mode
+      .col-sm-3.col-xs-6
+        label.radio-inline
+          input type="radio" name="hour12" value=0
+            |24H
+        label.radio-inline
+          input type="radio" name="hour12" value=1
+            |12H
+
+    pre.col-xs-12.debug.hidden
+
+    .col-xs-12.text-center
+      input#submit.btn.btn-primary type="submit" value="Submit"
 

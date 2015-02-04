@@ -5,11 +5,11 @@ Pebble.addEventListener("ready",
 );
 Pebble.addEventListener("showConfiguration",
   function(e) {
-    var config_url = "http://dstosik.github.io/pebble-rorschach/config.html";
-    //config_url = "http://192.168.7.6:4567/config.html"; // Local debug
+    var config_url = "http://dstosik.github.io/pebble-rorschach/config.html?";
+    //config_url = "http://192.168.7.6:8000/config.html?debug=1&"; // Local debug
 
     var settings = encodeURIComponent(localStorage.getItem("settings"));
-    config_url += '?settings=' + settings;
+    config_url += 'settings=' + settings;
 
     console.log("Opening Config: " + config_url);
     Pebble.openURL(config_url);

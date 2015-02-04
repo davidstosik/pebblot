@@ -27,6 +27,7 @@ static GPoint screen_center() {
 
 static GColor bg_color;
 static int display;
+static bool hour12;
 static void load_config() {
   bg_color = -1;
   if (persist_exists(KEY_BGCOLOR)) {
@@ -36,10 +37,12 @@ static void load_config() {
   if (persist_exists(KEY_DISPLAY)) {
     display = persist_read_int(KEY_DISPLAY);
   }
+  hour12 = persist_read_bool(KEY_HOUR12);
 }
 static void save_config() {
   persist_write_int(KEY_BGCOLOR, bg_color);
   persist_write_int(KEY_DISPLAY, display);
+  persist_write_int(KEY_HOUR12, hour12);
 }
 
 static GColor fg_color;
@@ -92,12 +95,12 @@ static void symmetry_layer_update_proc(struct Layer *layer, GContext *ctx) {
 
 static void update_time() {
   if(hours_first_bitmap) gbitmap_destroy(hours_first_bitmap);
-  hours_first_bitmap = gbitmap_create_with_resource(hours_first_digit(NULL));
+  hours_first_bitmap = gbitmap_create_with_resource(hours_first_digit(NULL, hour12));
   bitmap_layer_set_bitmap(hours_first_layer, hours_first_bitmap);
   layer_mark_dirty(bitmap_layer_get_layer(hours_first_layer));
   
   if(hours_last_bitmap) gbitmap_destroy(hours_last_bitmap);
-  hours_last_bitmap = gbitmap_create_with_resource(hours_last_digit(NULL));
+  hours_last_bitmap = gbitmap_create_with_resource(hours_last_digit(NULL, hour12));
   bitmap_layer_set_bitmap(hours_last_layer, hours_last_bitmap);
   layer_mark_dirty(bitmap_layer_get_layer(hours_last_layer));
 
@@ -214,6 +217,8 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 static void in_recv_handler(DictionaryIterator *received, void *context) {
   bg_color = (GColor) dict_find(received, KEY_BGCOLOR)->value->int32;
   display = dict_find(received, KEY_DISPLAY)->value->int32;
+  hour12 = dict_find(received, KEY_HOUR12)->value->int32;
+
   refresh_display_options();
   update_time();
 }
