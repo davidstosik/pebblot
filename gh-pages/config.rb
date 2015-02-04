@@ -1,3 +1,6 @@
+require 'slim'
+require 'coffee-script'
+
 ###
 # Compass
 ###
