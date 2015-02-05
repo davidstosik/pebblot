@@ -13,6 +13,12 @@
     "resources": {
         "media": [
             {
+                "menuIcon": true,
+                "file": "images/appicon.png",
+                "name": "IMAGE_MENU_ICON",
+                "type": "png"
+            },
+            {
                 "file": "images/hours_last_4.png",
                 "name": "HOURS_LAST_4",
                 "type": "png"
