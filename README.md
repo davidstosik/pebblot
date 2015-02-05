@@ -20,13 +20,12 @@ mirrored, then melted together.
 ## Feature list
 
  - Current time display
- - 12/24 hour mode (via a watchface setting)
+ - 12/24 hour mode (uses the Pebble's setting by default, but can be forced)
  - 2 display modes: simple and symmetric
  - Configurable background color (via a watchface setting)
 
 ## To-Do list
 
- - Base the 12/24 hour display mode on Pebble's internal setting
  - Add a simple PM indicator when in 12-hour mode
  - Add the third display mode, where digits melt together
  - Vibrate every hour
