@@ -12,8 +12,6 @@ javascript: "config"
         |Background Color
       .col-sm-3.col-xs-6
         select.form-control name="bgcolor"
-          option value=-1
-            |Auto
           option value=0
             |Black
           option value=1
@@ -24,23 +22,24 @@ javascript: "config"
         | Display
       .col-sm-3.col-xs-6
         select.form-control name="display"
-          option value=0
-            |Simple
+          option value=2 disabled="disabled"
+            |Insane
           option value=1
             |Symmetric
-          option value=2 disabled="true"
-            |Insane
+          option value=0
+            |Simple
 
     .form-group
-      label.col-sm-3.col-xs-6.control-label
-        |Hours mode
+      label.col-sm-3.col-xs-6.control-label for="hour24"
+        |Hours display mode
       .col-sm-3.col-xs-6
-        label.radio-inline
-          input type="radio" name="hour12" value=0
-            |24H
-        label.radio-inline
-          input type="radio" name="hour12" value=1
-            |12H
+        select.form-control name="hour24"
+          option value=-1
+            |Pebble setting
+          option value=1
+            |24 hours
+          option value=0
+            |12 hours
 
     pre.col-xs-12.debug.hidden
 

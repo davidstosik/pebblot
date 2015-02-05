@@ -27,9 +27,9 @@ static GPoint screen_center() {
 
 static GColor bg_color;
 static int display;
-static bool hour12;
+static int hour24;
 static void load_config() {
-  bg_color = -1;
+  bg_color = GColorBlack;
   if (persist_exists(KEY_BGCOLOR)) {
     bg_color = persist_read_int(KEY_BGCOLOR);
   }
@@ -37,26 +37,33 @@ static void load_config() {
   if (persist_exists(KEY_DISPLAY)) {
     display = persist_read_int(KEY_DISPLAY);
   }
-  hour12 = persist_read_bool(KEY_HOUR12);
+  hour24 = -1;
+  if (persist_exists(KEY_HOUR24)) {
+    hour24 = persist_read_int(KEY_HOUR24);
+  }
 }
 static void save_config() {
   persist_write_int(KEY_BGCOLOR, bg_color);
   persist_write_int(KEY_DISPLAY, display);
-  persist_write_int(KEY_HOUR12, hour12);
+  persist_write_int(KEY_HOUR24, hour24);
+}
+
+static bool hour24_mode() {
+  return hour24 == -1 ? clock_is_24h_style() : (bool)hour24;
 }
 
 static GColor fg_color;
 static GCompOp compositing;
 
 static void symmetry_layer_update_proc(struct Layer *layer, GContext *ctx) {
-  
+
   GBitmap* frame_buffer = graphics_capture_frame_buffer(ctx);
   uint8_t *image = frame_buffer->addr;
   uint16_t lines = frame_buffer->bounds.size.h;
   uint16_t cols = frame_buffer->bounds.size.w;
 
   uint8_t * symmetry_data = malloc(lines * frame_buffer->row_size_bytes);
-  
+
   uint8_t curr_byte = 0;
   uint16_t line_byte_offset;
   int16_t col_orig, col_sym;
@@ -77,7 +84,7 @@ static void symmetry_layer_update_proc(struct Layer *layer, GContext *ctx) {
     }
     symmetry_data[line_byte_offset + col_sym/8] = curr_byte; // Last byte in a row
   }
-  
+
   graphics_release_frame_buffer(ctx, frame_buffer);
   graphics_context_set_stroke_color(ctx, fg_color);
 
@@ -95,12 +102,12 @@ static void symmetry_layer_update_proc(struct Layer *layer, GContext *ctx) {
 
 static void update_time() {
   if(hours_first_bitmap) gbitmap_destroy(hours_first_bitmap);
-  hours_first_bitmap = gbitmap_create_with_resource(hours_first_digit(NULL, hour12));
+  hours_first_bitmap = gbitmap_create_with_resource(hours_first_digit(NULL, hour24_mode()));
   bitmap_layer_set_bitmap(hours_first_layer, hours_first_bitmap);
   layer_mark_dirty(bitmap_layer_get_layer(hours_first_layer));
-  
+
   if(hours_last_bitmap) gbitmap_destroy(hours_last_bitmap);
-  hours_last_bitmap = gbitmap_create_with_resource(hours_last_digit(NULL, hour12));
+  hours_last_bitmap = gbitmap_create_with_resource(hours_last_digit(NULL, hour24_mode()));
   bitmap_layer_set_bitmap(hours_last_layer, hours_last_bitmap);
   layer_mark_dirty(bitmap_layer_get_layer(hours_last_layer));
 
@@ -108,7 +115,7 @@ static void update_time() {
   minutes_first_bitmap = gbitmap_create_with_resource(minutes_first_digit(NULL));
   bitmap_layer_set_bitmap(minutes_first_layer, minutes_first_bitmap);
   layer_mark_dirty(bitmap_layer_get_layer(minutes_first_layer));
-  
+
   if(minutes_last_bitmap) gbitmap_destroy(minutes_last_bitmap);
   minutes_last_bitmap = gbitmap_create_with_resource(minutes_last_digit(NULL));
   bitmap_layer_set_bitmap(minutes_last_layer, minutes_last_bitmap);
@@ -118,20 +125,6 @@ static void update_time() {
 }
 
 static void refresh_display_options() {
-  if (bg_color == -1) {
-    switch(watch_info_get_color()) {
-      case WATCH_INFO_COLOR_UNKNOWN:
-      case WATCH_INFO_COLOR_BLACK:
-      case WATCH_INFO_COLOR_RED:
-      case WATCH_INFO_COLOR_STAINLESS_STEEL:
-      case WATCH_INFO_COLOR_MATTE_BLACK:
-        bg_color = GColorBlack;
-        break;
-      default:
-        bg_color = GColorWhite;
-        break;
-    }
-  }
   if (bg_color == GColorBlack) {
     fg_color = GColorWhite;
     compositing = GCompOpAssignInverted;
@@ -217,7 +210,7 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 static void in_recv_handler(DictionaryIterator *received, void *context) {
   bg_color = (GColor) dict_find(received, KEY_BGCOLOR)->value->int32;
   display = dict_find(received, KEY_DISPLAY)->value->int32;
-  hour12 = dict_find(received, KEY_HOUR12)->value->int32;
+  hour24 = dict_find(received, KEY_HOUR24)->value->int32;
 
   refresh_display_options();
   update_time();

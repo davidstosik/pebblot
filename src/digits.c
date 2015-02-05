@@ -49,17 +49,23 @@ static void init_time_struct(struct tm ** time_struct) {
   }
 }
 
-uint32_t hours_first_digit(struct tm * time_struct, bool hour12) {
+uint32_t hours_first_digit(struct tm * time_struct, bool hour24) {
   init_time_struct(&time_struct);
   int hour = time_struct->tm_hour;
-  if (hour12) hour = hour%12;
+  if (!hour24) {
+    hour = hour%12;
+    hour = hour ? hour : 12;
+  }
   return HOURS_FIRST_DIGITS[hour / 10];
 }
 
-uint32_t hours_last_digit(struct tm * time_struct, bool hour12) {
+uint32_t hours_last_digit(struct tm * time_struct, bool hour24) {
   init_time_struct(&time_struct);
   int hour = time_struct->tm_hour;
-  if (hour12) hour = hour%12;
+  if (!hour24) {
+    hour = hour%12;
+    hour = hour ? hour : 12;
+  }
   return HOURS_LAST_DIGITS[hour % 10];
 }
 

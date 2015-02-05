@@ -2,7 +2,7 @@
     "appKeys": {
       "bgcolor": 0,
       "display": 1,
-      "hour12" : 2
+      "hour24":  2
     },
     "capabilities": [
         "configurable"
