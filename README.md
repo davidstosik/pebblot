@@ -1,10 +1,10 @@
 # Pebblot
 
-![Pebblot
-examples](https://github.com/dstosik/pebble-rorschach/blob/master/design/examples/tests.png)
-
 Yet another attempt at making a Pebble watchface that looks like Hermann
 Rorschach's famous inkblot test.
+
+![Pebblot
+examples](https://github.com/dstosik/pebble-rorschach/blob/master/design/examples/tests.png)
 
 ## Basis
 
