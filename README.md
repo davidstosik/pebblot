@@ -1,6 +1,6 @@
 # Pebblot
 
-Yet another attempt at making a Pebble watchface that looks like Hermann
+Yet another attempt at making a Pebble watch face that looks like Hermann
 Rorschach's famous inkblot test.
 
 ![Pebblot
@@ -22,7 +22,7 @@ mirrored, then melted together.
  - Current time display
  - 12/24 hour mode (uses the Pebble's setting by default, but can be forced)
  - 2 display modes: simple and symmetric
- - Configurable background color (via a watchface setting)
+ - Configurable background color (via a watch face setting)
 
 ## To-Do list
 
@@ -35,7 +35,7 @@ mirrored, then melted together.
 
 ## Found a bug?
 
-If you are having any problem installing and using this watchface, feel free to
+If you are having any problem installing and using this watch face, feel free to
 give me a shout on [Pebble's official forum](http://forums.getpebble.com)
 (I'm [DavidStosik](http://forums.getpebble.com/profile/77675/DavidStosik)), or
 to [file an issue on Github](https://github.com/dstosik/pebble-rorschach/issues).
@@ -50,7 +50,7 @@ was a great source of inspiration.
  - [Grégoire Sage](https://github.com/gregoiresage) a.k.a
 [perdrolane](http://forums.getpebble.com/profile/6493/pedrolane), for showing
 me some Pebble stuff he's been working on, getting me interested into Pebble
-development. Also for referring, on [his own version of the Pebble Rorschach
-watchface](https://apps.getpebble.com/applications/53470aa9b0b1d3469e00012d),
+development, and also for referring, on [his own version of the Pebble Rorschach
+watch face](https://apps.getpebble.com/applications/53470aa9b0b1d3469e00012d),
 Sam Jerichow's design (see above).
  - Guillaume for his constant support and input.
