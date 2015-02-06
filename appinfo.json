@@ -8,7 +8,7 @@
         "configurable"
     ],
     "companyName": "David Stosik",
-    "longName": "Rorschach",
+    "longName": "Pebblot",
     "projectType": "native",
     "resources": {
         "media": [
@@ -165,7 +165,7 @@
             }
         ]
     },
-    "shortName": "Rorschach",
+    "shortName": "Pebblot",
     "uuid": "31718374-a2be-463e-84a5-efed3a0f006b",
     "versionCode": 1,
     "versionLabel": "1.0",

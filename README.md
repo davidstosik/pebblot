@@ -4,7 +4,7 @@ Yet another attempt at making a Pebble watch face that looks like Hermann
 Rorschach's famous inkblot test.
 
 ![Pebblot
-examples](https://raw.githubusercontent.com/dstosik/pebble-rorschach/master/design/examples/tests.png)
+examples](https://raw.githubusercontent.com/dstosik/pebblot/master/design/examples/tests.png)
 
 ## Basis
 
@@ -38,7 +38,7 @@ mirrored, then melted together.
 If you are having any problem installing and using this watch face, feel free to
 give me a shout on [Pebble's official forum](http://forums.getpebble.com)
 (I'm [DavidStosik](http://forums.getpebble.com/profile/77675/DavidStosik)), or
-to [file an issue on Github](https://github.com/dstosik/pebble-rorschach/issues).
+to [file an issue on Github](https://github.com/dstosik/pebblot/issues).
 
 Suggestions are welcome too!
 

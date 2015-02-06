@@ -5,7 +5,7 @@ Pebble.addEventListener("ready",
 );
 Pebble.addEventListener("showConfiguration",
   function(e) {
-    var config_url = "https://dstosik.github.io/pebble-rorschach/config.html?";
+    var config_url = "https://dstosik.github.io/pebblot/config.html?";
     //config_url = "http://192.168.7.6:8000/config.html?debug=1&"; // Local debug
 
     var settings = encodeURIComponent(localStorage.getItem("settings"));
