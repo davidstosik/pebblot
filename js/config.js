@@ -2124,7 +2124,7 @@ ga('send', 'pageview');
 }).call(this);
 (function() {
   $(function() {
-    var delay, settings;
+    var delay, settings, uid;
     delay = function(ms, func) {
       return setTimeout(func, ms);
     };
@@ -2137,6 +2137,9 @@ ga('send', 'pageview');
         return results[1] || 0;
       }
     };
+    if (uid = $.urlParam('account')) {
+      ga('set', '&uid', uid);
+    }
     settings = JSON.parse(decodeURIComponent($.urlParam('settings')));
     settings || (settings = {});
     $('.debug').append("Received settings: " + JSON.stringify(settings) + "\n");
