@@ -27,7 +27,8 @@ mirrored, then melted together.
 ## How to get it?
 
 Until I officially release it on Pebble's app store, you can get the watch
-face's .pbw file on Github's [Releases page](https://github.com/dstosik/pebblot).
+face's .pbw file on Github's
+[Releases page](https://github.com/dstosik/pebblot/releases).
 Feel free to clone this repository and compile the watch face from the sources
 to get latest improvements (code stability is only guaranteed on official releases).
 
