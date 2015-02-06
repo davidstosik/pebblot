@@ -24,6 +24,13 @@ mirrored, then melted together.
  - 2 display modes: simple and symmetric
  - Configurable background color (via a watch face setting)
 
+## How to get it?
+
+Until I officially release it on Pebble's app store, you can get the watch
+face's .pbw file on Github's [Releases page](https://github.com/dstosik/pebblot).
+Feel free to clone this repository and compile the watch face from the sources
+to get latest improvements (code stability is only guaranteed on official releases).
+
 ## To-Do list
 
  - Add a simple PM indicator when in 12-hour mode
