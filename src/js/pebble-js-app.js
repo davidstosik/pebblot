@@ -11,6 +11,8 @@ Pebble.addEventListener("showConfiguration",
     var settings = encodeURIComponent(localStorage.getItem("settings"));
     config_url += 'settings=' + settings;
 
+    config_url += '&account=' + Pebble.getAccountToken();
+
     console.log("Opening Config: " + config_url);
     Pebble.openURL(config_url);
   }

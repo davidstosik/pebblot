@@ -12,6 +12,9 @@ $ ->
       results[1] || 0
   # End of $.urlParam
 
+  if uid = $.urlParam 'account'
+    ga('set', '&uid', uid) # Set the user ID using signed-in user_id.
+
   settings = JSON.parse decodeURIComponent $.urlParam 'settings'
   settings ||= {}
 
