@@ -4,7 +4,9 @@ html
     meta charset="utf-8"
     meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
 
-    title = current_page.data.title || "The Middleman"
+    link rel="icon" type="image/ico" href=asset_url("favicon.ico")
+
+    title = current_page.data.title || "Pebblot"
 
     = stylesheet_link_tag data.page.stylesheet ? data.page.stylesheet : {}
 
