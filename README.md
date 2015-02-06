@@ -4,7 +4,7 @@ Yet another attempt at making a Pebble watch face that looks like Hermann
 Rorschach's famous inkblot test.
 
 ![Pebblot
-examples](https://github.com/dstosik/pebble-rorschach/blob/master/design/examples/tests.png)
+examples](https://raw.githubusercontent.com/dstosik/pebble-rorschach/master/design/examples/tests.png)
 
 ## Basis
 
