@@ -6,10 +6,13 @@ html
 
     link rel="icon" type="image/ico" href=asset_url("favicon.ico")
 
-    title = current_page.data.title || "Pebblot"
+    = javascript_include_tag 'shared/header'
+
+    title = current_page.data.title || data.env.TITLE
 
     = stylesheet_link_tag data.page.stylesheet ? data.page.stylesheet : {}
 
   body class=page_classes
     = yield
     = javascript_include_tag data.page.javascript ? data.page.javascript : {}
+    = javascript_include_tag 'shared/footer'
