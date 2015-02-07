@@ -48,7 +48,8 @@ $ ->
 
   event_props = (settings == {}) ? {empty_settings: true} || settings
   event_props['debug'] = $.urlParam 'debug'
-  mixpanel.track 'Opened config page', event_props
+  event_props['page'] = 'config'
+  mixpanel.track 'Page', event_props
 
   $('select').change (e) ->
     mixpanel.track 'Changed option', { name: $(this).attr('name'), value: $(this).val() }
