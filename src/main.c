@@ -3,6 +3,8 @@
 #include "digits.h"
 #include "settings.h"
 
+static Settings *settings;
+
 static Window *window;
 static Layer *main_layer;
 static GBitmap *hours_first_bitmap;
@@ -25,31 +27,12 @@ static GPoint screen_center() {
   }
 }
 
-static GColor bg_color;
-static int display;
-static int hour24;
-static void load_config() {
-  bg_color = GColorBlack;
-  if (persist_exists(KEY_BGCOLOR)) {
-    bg_color = persist_read_int(KEY_BGCOLOR);
-  }
-  display = 1;
-  if (persist_exists(KEY_DISPLAY)) {
-    display = persist_read_int(KEY_DISPLAY);
-  }
-  hour24 = -1;
-  if (persist_exists(KEY_HOUR24)) {
-    hour24 = persist_read_int(KEY_HOUR24);
-  }
-}
-static void save_config() {
-  persist_write_int(KEY_BGCOLOR, bg_color);
-  persist_write_int(KEY_DISPLAY, display);
-  persist_write_int(KEY_HOUR24, hour24);
-}
-
 static bool hour24_mode() {
-  return hour24 == -1 ? clock_is_24h_style() : (bool)hour24;
+  if (settings->time_display == TimeDispModeAuto) {
+    return clock_is_24h_style();
+  } else {
+    return settings->time_display == TimeDispMode24H;
+  }
 }
 
 static GColor fg_color;
@@ -125,23 +108,25 @@ static void update_time() {
 }
 
 static void refresh_display_options() {
-  if (bg_color == GColorBlack) {
+  if (settings->bgcolor == GColorBlack) {
     fg_color = GColorWhite;
     compositing = GCompOpAssignInverted;
   } else {
     fg_color = GColorBlack;
     compositing = GCompOpAssign;
   }
-  window_set_background_color(window, bg_color);
+  window_set_background_color(window, settings->bgcolor);
   bitmap_layer_set_compositing_mode(hours_first_layer, compositing);
   bitmap_layer_set_compositing_mode(hours_last_layer, compositing);
   bitmap_layer_set_compositing_mode(minutes_first_layer, compositing);
   bitmap_layer_set_compositing_mode(minutes_last_layer, compositing);
-  layer_set_hidden(symmetry_layer, !display);
+
+  bool hide_symmetry = settings->screen_mode == ScreenModeSimple;
+  layer_set_hidden(symmetry_layer, hide_symmetry);
 }
 
 static void window_load(Window *window) {
-  window_set_background_color(window, bg_color);
+  window_set_background_color(window, settings->bgcolor);
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
@@ -208,16 +193,17 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 }
 
 static void in_recv_handler(DictionaryIterator *received, void *context) {
-  bg_color = (GColor) dict_find(received, KEY_BGCOLOR)->value->int32;
-  display = dict_find(received, KEY_DISPLAY)->value->int32;
-  hour24 = dict_find(received, KEY_HOUR24)->value->int32;
+  settings->bgcolor = (GColor) dict_find(received, APPKEY_BGCOLOR)->value->int32;
+  settings->screen_mode = dict_find(received, APPKEY_DISPLAY)->value->int32;
+  settings->time_display = dict_find(received, APPKEY_HOUR24)->value->int32;
 
   refresh_display_options();
   update_time();
 }
 
 static void init(void) {
-  load_config();
+  settings = settings_create();
+  persist_read_settings(settings);
 
   // React to settings message from phone
   app_message_register_inbox_received(in_recv_handler);
@@ -237,7 +223,8 @@ static void init(void) {
 static void deinit(void) {
   window_destroy(window);
 
-  save_config();
+  persist_write_settings(settings);
+  settings_destroy(settings);
 }
 
 int main(void) {
