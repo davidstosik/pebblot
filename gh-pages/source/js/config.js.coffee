@@ -3,8 +3,12 @@ $ ->
   if uid = $.urlParam 'account'
     ga 'set', '&uid', uid # Set the user ID using signed-in user_id.
 
-  settings = JSON.parse decodeURIComponent $.urlParam 'settings'
-  settings ||= {}
+  try
+    settings = JSON.parse decodeURIComponent $.urlParam 'settings'
+  catch
+    settings = {}
+
+  settings = {} unless typeof settings == 'object'
 
   $('.debug').append "Received settings: " + JSON.stringify(settings) + "\n"
 
