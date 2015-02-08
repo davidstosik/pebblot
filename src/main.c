@@ -1,6 +1,7 @@
 #include <pebble.h>
 #include "settings.h"
 #include "digits.h"
+#include "digit_bitmaps.h"
 #include "symmetry.h"
 #include "positions.h"
 
