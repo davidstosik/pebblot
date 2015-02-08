@@ -1,8 +1,9 @@
 {
     "appKeys": {
-      "bgcolor": 0,
-      "display": 1,
-      "hour24":  2
+      "bgcolor":      0,
+      "display":      1,
+      "hour24":       2,
+      "steel_offset": 3
     },
     "capabilities": [
         "configurable"

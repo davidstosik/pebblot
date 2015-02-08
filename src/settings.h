@@ -1,6 +1,7 @@
 #define APPKEY_BGCOLOR 0
 #define APPKEY_DISPLAY 1
 #define APPKEY_HOUR24  2
+#define APPKEY_STEEL_OFFSET 3
 
 #define PERSIST_KEY_SETTINGS 0
 
@@ -16,10 +17,17 @@ typedef enum {
   ScreenModeInsane,
 } ScreenMode;
 
+typedef enum {
+  SteelOffsetAuto = -1,
+  SteelOffsetOff = 0,
+  StelOffsetOn = 1,
+} SteelOffset;
+
 struct SettingsStruct {
   GColor            bgcolor;
   ScreenMode        screen_mode;
   TimeDisplayMode   time_display;
+  SteelOffset       steel_offset;
 };
 typedef struct SettingsStruct Settings;
 

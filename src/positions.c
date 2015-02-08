@@ -12,6 +12,7 @@
 #define Y1 21
 #define Y2 25
 #define Y3 88
+#define SteelOffset 11
 
 
 static const GRect digit_positions[4] = {
@@ -28,13 +29,15 @@ static const GRect symmetric_positions[4] = {
   { { X3, Y3 }, DigitBigSize },
 };
 
-GRect get_digit_position(uint8_t position) {
+GRect get_digit_position(uint8_t position, bool steel_offset) {
   GRect result = digit_positions[position];
+  if (steel_offset) result.origin.y += SteelOffset;
   return result;
 }
 
-GRect get_symmetric_position(uint8_t position) {
+GRect get_symmetric_position(uint8_t position, bool steel_offset) {
   GRect result = symmetric_positions[position];
+  if (steel_offset) result.origin.y += SteelOffset;
   return result;
 }
 

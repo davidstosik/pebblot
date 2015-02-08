@@ -10,6 +10,7 @@ Settings* settings_create() {
   settings->bgcolor = GColorBlack;
   settings->screen_mode = ScreenModeSymmetry;
   settings->time_display = TimeDispModeAuto;
+  settings->steel_offset = SteelOffsetAuto;
   return settings;
 }
 

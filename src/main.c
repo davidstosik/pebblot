@@ -7,6 +7,7 @@
 typedef struct {
   GColor bgcolor;
   uint8_t digits[4];
+  bool steel_offset;
   bool inverted;
   bool symmetry;
   bool melt;
@@ -35,6 +36,11 @@ static void update_screen() {
 
   state.symmetry = settings->screen_mode != ScreenModeSimple;
   state.inverted = settings->bgcolor == GColorWhite;
+  if (settings->steel_offset == SteelOffsetAuto) {
+    state.steel_offset = watch_info_get_model() == WATCH_INFO_MODEL_PEBBLE_STEEL;
+  } else {
+    state.steel_offset = settings->steel_offset;
+  }
 
   layer_mark_dirty(canvas);
   layer_set_hidden(inverter_layer_get_layer(inverter), !state.inverted);
@@ -44,10 +50,10 @@ static void update_screen() {
 static void update_canvas(struct Layer *layer, GContext *ctx) {
   graphics_context_set_compositing_mode(ctx, GCompOpAssignInverted);
   for (int i = 0; i < 4; i++) {
-    graphics_draw_bitmap_in_rect(ctx, get_digit_bitmap(i, state.digits[i]), get_digit_position(i));
+    graphics_draw_bitmap_in_rect(ctx, get_digit_bitmap(i, state.digits[i]), get_digit_position(i, state.steel_offset));
     if (state.symmetry) {
       GBitmap* symmetric = get_digit_symmetry_bitmap(i, state.digits[i], HorizontalSym);
-      graphics_draw_bitmap_in_rect(ctx, symmetric, get_symmetric_position(i));
+      graphics_draw_bitmap_in_rect(ctx, symmetric, get_symmetric_position(i, state.steel_offset));
       gbitmap_destroy(symmetric);
     }
   }
@@ -82,6 +88,7 @@ static void in_recv_handler(DictionaryIterator *received, void *context) {
   settings->bgcolor = (GColor) dict_find(received, APPKEY_BGCOLOR)->value->int32;
   settings->screen_mode = (ScreenMode) dict_find(received, APPKEY_DISPLAY)->value->int32;
   settings->time_display = (TimeDisplayMode) dict_find(received, APPKEY_HOUR24)->value->int32;
+  settings->steel_offset = (SteelOffset) dict_find(received, APPKEY_STEEL_OFFSET)->value->int32;
 
   update_screen();
 }
