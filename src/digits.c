@@ -119,7 +119,8 @@ GBitmap* get_digit_bitmap(uint8_t position, uint8_t digit) {
 GBitmap* get_digit_symmetry_bitmap(uint8_t position, uint8_t digit, Symmetry symmetry) {
   if (!bitmaps[symmetry][position][digit]) {
     bitmaps[symmetry][position][digit] = gbitmap_create_by_symmetry(
-      get_digit_bitmap(position, digit), symmetry);
+      get_digit_bitmap(position, digit), symmetry
+    );
   }
   return bitmaps[symmetry][position][digit];
 }
@@ -136,32 +137,32 @@ void free_digit_bitmaps() {
   }
 }
 
-GBitmap* hours_first_digit_bitmap(struct tm * time_struct, bool hour24) {
+uint8_t hours_first_digit(struct tm * time_struct, bool hour24) {
   init_time_struct(&time_struct);
   int hour = time_struct->tm_hour;
   if (!hour24) {
     hour = hour%12;
     hour = hour ? hour : 12;
   }
-  return get_digit_bitmap(0, hour/10);
+  return hour/10;
 }
 
-GBitmap* hours_last_digit_bitmap(struct tm * time_struct, bool hour24) {
+uint8_t hours_last_digit(struct tm * time_struct, bool hour24) {
   init_time_struct(&time_struct);
   int hour = time_struct->tm_hour;
   if (!hour24) {
     hour = hour%12;
     hour = hour ? hour : 12;
   }
-  return get_digit_bitmap(1, hour%10);
+  return hour%10;
 }
 
-GBitmap* minutes_first_digit_bitmap(struct tm * time_struct) {
+uint8_t minutes_first_digit(struct tm * time_struct) {
   init_time_struct(&time_struct);
-  return get_digit_bitmap(2, time_struct->tm_min / 10);
+  return time_struct->tm_min / 10;
 }
 
-GBitmap* minutes_last_digit_bitmap(struct tm * time_struct) {
+uint8_t minutes_last_digit(struct tm * time_struct) {
   init_time_struct(&time_struct);
-  return get_digit_bitmap(3, time_struct->tm_min % 10);
+  return time_struct->tm_min % 10;
 }
