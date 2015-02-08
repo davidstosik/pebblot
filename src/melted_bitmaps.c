@@ -88,6 +88,38 @@ void draw_melted_parts(uint8_t position, uint8_t digit, GContext *ctx, bool stee
           break;
       }
       break;
+    case 3:
+      switch (digit) {
+        case 1:
+        case 4:
+          melted_resource_ids[0] = RESOURCE_ID_MELTED_3_BOTTOM_RIGHT;
+          positions[0] = (GPoint)POSITION_MELTED_3_BOTTOM_RIGHT;
+          break;
+        case 2:
+          melted_resource_ids[0] = RESOURCE_ID_MELTED_3_RIGHT_BOTTOM;
+          positions[0] = (GPoint)POSITION_MELTED_3_RIGHT_BOTTOM;
+          break;
+        case 3:
+          melted_resource_ids[0] = RESOURCE_ID_MELTED_3_RIGHT_CENTER;
+          positions[0] = (GPoint)POSITION_MELTED_3_RIGHT_CENTER;
+          break;
+        case 5:
+        case 6:
+          melted_resource_ids[0] = RESOURCE_ID_MELTED_3_RIGHT_TOP;
+          positions[0] = (GPoint)POSITION_MELTED_3_RIGHT_TOP;
+          break;
+        case 7:
+          melted_resource_ids[0] = RESOURCE_ID_MELTED_3_RIGHT_CENTER;
+          positions[0] = (GPoint)POSITION_MELTED_3_RIGHT_CENTER;
+          melted_resource_ids[1] = RESOURCE_ID_MELTED_3_BOTTOM_RIGHT;
+          positions[1] = (GPoint)POSITION_MELTED_3_BOTTOM_RIGHT;
+          count = 2;
+          break;
+        default:
+          count = 0;
+          break;
+      }
+      break;
     default:
       count = 0;
       break;
