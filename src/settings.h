@@ -23,13 +23,12 @@ typedef enum {
   StelOffsetOn = 1,
 } SteelOffset;
 
-struct SettingsStruct {
+typedef struct Settings {
   GColor            bgcolor;
   ScreenMode        screen_mode;
   TimeDisplayMode   time_display;
   SteelOffset       steel_offset;
-};
-typedef struct SettingsStruct Settings;
+} Settings;
 
 Settings* settings_create();
 void settings_destroy(Settings* settings);

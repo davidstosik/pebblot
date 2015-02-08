@@ -2,7 +2,7 @@
 #include "settings.h"
 
 size_t sizeof_settings() {
-  return sizeof(struct SettingsStruct);
+  return sizeof(Settings);
 }
 
 Settings* settings_create() {

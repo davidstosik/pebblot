@@ -4,7 +4,7 @@
 #include "symmetry.h"
 #include "positions.h"
 
-typedef struct {
+typedef struct  DisplayState {
   GColor bgcolor;
   uint8_t digits[4];
   bool steel_offset;
@@ -14,46 +14,45 @@ typedef struct {
   bool pm_dot;
 } DisplayState;
 
-static DisplayState state;
+static DisplayState* state;
 static Settings *settings;
 static Window *window;
 static Layer *canvas;
 static InverterLayer *inverter;
 
-static bool hour24_mode() {
+void update_screen() {
+  bool hour24;
   if (settings->time_display == TimeDispModeAuto) {
-    return clock_is_24h_style();
+    hour24 = clock_is_24h_style();
   } else {
-    return settings->time_display == TimeDispMode24H;
+    hour24 = settings->time_display == TimeDispMode24H;
   }
-}
 
-static void update_screen() {
-  state.digits[0] = hours_first_digit(NULL, hour24_mode());
-  state.digits[1] = hours_last_digit(NULL, hour24_mode());
-  state.digits[2] = minutes_first_digit(NULL);
-  state.digits[3] = minutes_last_digit(NULL);
+  state->digits[0] = hours_first_digit(NULL, hour24);
+  state->digits[1] = hours_last_digit(NULL, hour24);
+  state->digits[2] = minutes_first_digit(NULL);
+  state->digits[3] = minutes_last_digit(NULL);
 
-  state.symmetry = settings->screen_mode != ScreenModeSimple;
-  state.inverted = settings->bgcolor == GColorWhite;
+  state->symmetry = settings->screen_mode != ScreenModeSimple;
+  state->inverted = settings->bgcolor == GColorWhite;
   if (settings->steel_offset == SteelOffsetAuto) {
-    state.steel_offset = watch_info_get_model() == WATCH_INFO_MODEL_PEBBLE_STEEL;
+    state->steel_offset = watch_info_get_model() == WATCH_INFO_MODEL_PEBBLE_STEEL;
   } else {
-    state.steel_offset = settings->steel_offset;
+    state->steel_offset = settings->steel_offset;
   }
 
   layer_mark_dirty(canvas);
-  layer_set_hidden(inverter_layer_get_layer(inverter), !state.inverted);
+  layer_set_hidden(inverter_layer_get_layer(inverter), !state->inverted);
   layer_mark_dirty(inverter_layer_get_layer(inverter));
 }
 
 static void update_canvas(struct Layer *layer, GContext *ctx) {
   graphics_context_set_compositing_mode(ctx, GCompOpAssignInverted);
   for (int i = 0; i < 4; i++) {
-    graphics_draw_bitmap_in_rect(ctx, get_digit_bitmap(i, state.digits[i]), get_digit_position(i, state.steel_offset));
-    if (state.symmetry) {
-      GBitmap* symmetric = get_digit_symmetry_bitmap(i, state.digits[i], HorizontalSym);
-      graphics_draw_bitmap_in_rect(ctx, symmetric, get_symmetric_position(i, state.steel_offset));
+    graphics_draw_bitmap_in_rect(ctx, get_digit_bitmap(i, state->digits[i]), get_digit_position(i, state->steel_offset));
+    if (state->symmetry) {
+      GBitmap* symmetric = get_digit_symmetry_bitmap(i, state->digits[i], HorizontalSym);
+      graphics_draw_bitmap_in_rect(ctx, symmetric, get_symmetric_position(i, state->steel_offset));
       gbitmap_destroy(symmetric);
     }
   }
@@ -96,6 +95,7 @@ static void in_recv_handler(DictionaryIterator *received, void *context) {
 static void init(void) {
   settings = settings_create();
   persist_read_settings(settings);
+  state = malloc(sizeof(DisplayState));
 
   // React to settings message from phone
   app_message_register_inbox_received(in_recv_handler);
@@ -117,6 +117,7 @@ static void deinit(void) {
 
   persist_write_settings(settings);
   settings_destroy(settings);
+  free(state);
 }
 
 int main(void) {
