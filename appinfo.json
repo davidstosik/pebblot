@@ -13,143 +13,213 @@
     "projectType": "native",
     "resources": {
         "media": [
-          {
-            "menuIcon": true,
-            "file": "images/appicon.png",
-            "name": "IMAGE_MENU_ICON",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/0/d0_0.png",
-            "name": "DIGIT_0_0",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/0/d0_1.png",
-            "name": "DIGIT_0_1",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/0/d0_2.png",
-            "name": "DIGIT_0_2",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/0/d0_5.png",
-            "name": "DIGIT_0_5",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/0/d0_6.png",
-            "name": "DIGIT_0_6",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/0/d0_9.png",
-            "name": "DIGIT_0_9",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_0.png",
-            "name": "DIGIT_1_0",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_1.png",
-            "name": "DIGIT_1_1",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_2.png",
-            "name": "DIGIT_1_2",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_3.png",
-            "name": "DIGIT_1_3",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_4.png",
-            "name": "DIGIT_1_4",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_5.png",
-            "name": "DIGIT_1_5",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_6.png",
-            "name": "DIGIT_1_6",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_7.png",
-            "name": "DIGIT_1_7",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_8.png",
-            "name": "DIGIT_1_8",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/1/d1_9.png",
-            "name": "DIGIT_1_9",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/2/d2_1.png",
-            "name": "DIGIT_2_1",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/2/d2_3.png",
-            "name": "DIGIT_2_3",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/2/d2_4.png",
-            "name": "DIGIT_2_4",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/3/d3_1.png",
-            "name": "DIGIT_3_1",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/3/d3_3.png",
-            "name": "DIGIT_3_3",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/3/d3_4.png",
-            "name": "DIGIT_3_4",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/3/d3_5.png",
-            "name": "DIGIT_3_5",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/3/d3_7.png",
-            "name": "DIGIT_3_7",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/3/d3_8.png",
-            "name": "DIGIT_3_8",
-            "type": "png"
-          },
-          {
-            "file": "images/digits/3/d3_9.png",
-            "name": "DIGIT_3_9",
-            "type": "png"
-          }
-        ]
+            {
+              "menuIcon": true,
+              "file": "images/appicon.png",
+              "name": "IMAGE_MENU_ICON",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/0/d0_0.png",
+              "name": "DIGIT_0_0",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/0/d0_1.png",
+              "name": "DIGIT_0_1",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/0/d0_2.png",
+              "name": "DIGIT_0_2",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/0/d0_5.png",
+              "name": "DIGIT_0_5",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/0/d0_6.png",
+              "name": "DIGIT_0_6",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/0/d0_9.png",
+              "name": "DIGIT_0_9",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_0.png",
+              "name": "DIGIT_1_0",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_1.png",
+              "name": "DIGIT_1_1",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_2.png",
+              "name": "DIGIT_1_2",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_3.png",
+              "name": "DIGIT_1_3",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_4.png",
+              "name": "DIGIT_1_4",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_5.png",
+              "name": "DIGIT_1_5",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_6.png",
+              "name": "DIGIT_1_6",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_7.png",
+              "name": "DIGIT_1_7",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_8.png",
+              "name": "DIGIT_1_8",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/1/d1_9.png",
+              "name": "DIGIT_1_9",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/2/d2_1.png",
+              "name": "DIGIT_2_1",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/2/d2_3.png",
+              "name": "DIGIT_2_3",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/2/d2_4.png",
+              "name": "DIGIT_2_4",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/3/d3_1.png",
+              "name": "DIGIT_3_1",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/3/d3_3.png",
+              "name": "DIGIT_3_3",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/3/d3_4.png",
+              "name": "DIGIT_3_4",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/3/d3_5.png",
+              "name": "DIGIT_3_5",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/3/d3_7.png",
+              "name": "DIGIT_3_7",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/3/d3_8.png",
+              "name": "DIGIT_3_8",
+              "type": "png"
+            },
+            {
+              "file": "images/digits/3/d3_9.png",
+              "name": "DIGIT_3_9",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/0/m0_left_top.png",
+              "name": "MELTED_0_LEFT_TOP",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/0/m0_top_right.png",
+              "name": "MELTED_0_TOP_RIGHT",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/1/m1_right_center.png",
+              "name": "MELTED_1_RIGHT_CENTER",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/1/m1_right_top.png",
+              "name": "MELTED_1_RIGHT_TOP",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/1/m1_right_bottom.png",
+              "name": "MELTED_1_RIGHT_BOTTOM",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/1/m1_top_left.png",
+              "name": "MELTED_1_TOP_LEFT",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/2/m2_left_bottom.png",
+              "name": "MELTED_2_LEFT_BOTTOM",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/2/m2_left_top.png",
+              "name": "MELTED_2_LEFT_TOP",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/2/m2_bottom_right.png",
+              "name": "MELTED_2_BOTTOM_RIGHT",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/2/m2_left_center.png",
+              "name": "MELTED_2_LEFT_CENTER",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/3/m3_right_bottom.png",
+              "name": "MELTED_3_RIGHT_BOTTOM",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/3/m3_right_center.png",
+              "name": "MELTED_3_RIGHT_CENTER",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/3/m3_right_top.png",
+              "name": "MELTED_3_RIGHT_TOP",
+              "type": "png"
+            },
+            {
+              "file": "images/melted/3/m3_bottom_right.png",
+              "name": "MELTED_3_BOTTOM_RIGHT",
+              "type": "png"
+            }
+]
     },
     "shortName": "Pebblot",
     "uuid": "31718374-a2be-463e-84a5-efed3a0f006b",
@@ -159,3 +229,4 @@
         "watchface": true
     }
 }
+
