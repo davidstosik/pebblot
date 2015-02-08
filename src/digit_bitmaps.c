@@ -1,7 +1,7 @@
 #include <pebble.h>
 #include "digit_bitmaps.h"
 
-static const uint8_t DIGITS[4][10] = {
+static const uint32_t DIGITS[4][10] = {
   {
     RESOURCE_ID_DIGIT_0_0,
     RESOURCE_ID_DIGIT_0_1,
