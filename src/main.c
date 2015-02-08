@@ -4,22 +4,20 @@
 #include "symmetry.h"
 #include "positions.h"
 
+typedef struct {
+  GColor bgcolor;
+  uint8_t digits[4];
+  bool inverted;
+  bool symmetry;
+  bool melt;
+  bool pm_dot;
+} DisplayState;
 
+static DisplayState state;
 static Settings *settings;
 static Window *window;
-static Layer *main_layer;
-static BitmapLayer* digit_layers[4];
-static BitmapLayer* symmetric_layers[4];
-
-static GPoint screen_center() {
-  GRect bounds = layer_get_bounds(window_get_root_layer(window));
-  switch(watch_info_get_model()) {
-    case WATCH_INFO_MODEL_PEBBLE_STEEL:
-      return GPoint(bounds.size.w/2, 95);
-    default:
-      return grect_center_point(&bounds);
-  }
-}
+static Layer *canvas;
+static InverterLayer *inverter;
 
 static bool hour24_mode() {
   if (settings->time_display == TimeDispModeAuto) {
@@ -29,92 +27,68 @@ static bool hour24_mode() {
   }
 }
 
-static GColor fg_color;
-static GCompOp compositing;
+static void update_screen() {
+  state.digits[0] = hours_first_digit(NULL, hour24_mode());
+  state.digits[1] = hours_last_digit(NULL, hour24_mode());
+  state.digits[2] = minutes_first_digit(NULL);
+  state.digits[3] = minutes_last_digit(NULL);
 
-static void update_time() {
-  uint8_t digits[4] = {
-    hours_first_digit(NULL, hour24_mode()),
-    hours_last_digit(NULL, hour24_mode()),
-    minutes_first_digit(NULL),
-    minutes_last_digit(NULL),
-  };
+  state.symmetry = settings->screen_mode != ScreenModeSimple;
+  state.inverted = settings->bgcolor == GColorWhite;
 
-  for (int i = 0; i < 4; i++) {
-    bitmap_layer_set_bitmap(digit_layers[i], get_digit_bitmap(i, digits[i]));
-    bitmap_layer_set_bitmap(symmetric_layers[i], get_digit_symmetry_bitmap(i, digits[i], HorizontalSym));
-    layer_mark_dirty(bitmap_layer_get_layer(digit_layers[i]));
-    layer_mark_dirty(bitmap_layer_get_layer(symmetric_layers[i]));
-  }
+  layer_mark_dirty(canvas);
+  layer_set_hidden(inverter_layer_get_layer(inverter), !state.inverted);
+  layer_mark_dirty(inverter_layer_get_layer(inverter));
 }
 
-static void refresh_display_options() {
-  if (settings->bgcolor == GColorBlack) {
-    fg_color = GColorWhite;
-    compositing = GCompOpAssignInverted;
-  } else {
-    fg_color = GColorBlack;
-    compositing = GCompOpAssign;
-  }
-  window_set_background_color(window, settings->bgcolor);
-
+static void update_canvas(struct Layer *layer, GContext *ctx) {
+  graphics_context_set_compositing_mode(ctx, GCompOpAssignInverted);
   for (int i = 0; i < 4; i++) {
-    bitmap_layer_set_compositing_mode(digit_layers[i], compositing);
-    bitmap_layer_set_compositing_mode(symmetric_layers[i], compositing);
+    graphics_draw_bitmap_in_rect(ctx, get_digit_bitmap(i, state.digits[i]), get_digit_position(i));
+    if (state.symmetry) {
+      GBitmap* symmetric = get_digit_symmetry_bitmap(i, state.digits[i], HorizontalSym);
+      graphics_draw_bitmap_in_rect(ctx, symmetric, get_symmetric_position(i));
+      gbitmap_destroy(symmetric);
+    }
   }
 }
 
 static void window_load(Window *window) {
-  window_set_background_color(window, settings->bgcolor);
+  window_set_background_color(window, GColorBlack);
   Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_bounds(window_layer);
 
-  GPoint center = screen_center();
-  main_layer = layer_create(GRect(
-    center.x - get_main_layer_size().w/2,
-    center.y - get_main_layer_size().h/2,
-    get_main_layer_size().w,
-    get_main_layer_size().h
-  ));
-  layer_add_child(window_layer, main_layer);
+  canvas = layer_create(bounds);
+  layer_set_update_proc(canvas, update_canvas);
+  layer_add_child(window_layer, canvas);
 
-  for (int i = 0; i < 4; i++) {
-    digit_layers[i] = bitmap_layer_create(get_digit_position(i));
-    layer_add_child(main_layer, bitmap_layer_get_layer(digit_layers[i]));
+  inverter = inverter_layer_create(bounds);
+  layer_add_child(window_layer, inverter_layer_get_layer(inverter));
 
-    symmetric_layers[i] = bitmap_layer_create(get_symmetric_position(i));
-    layer_add_child(main_layer, bitmap_layer_get_layer(symmetric_layers[i]));
-  }
-
-  refresh_display_options();
-  update_time();
+  update_screen();
 }
 
 static void window_unload(Window *window) {
-  layer_destroy(main_layer);
+  layer_destroy(canvas);
+  inverter_layer_destroy(inverter);
   free_digit_bitmaps();
-  for (int i = 0; i < 4; i++) {
-    bitmap_layer_destroy(digit_layers[i]);
-    bitmap_layer_destroy(symmetric_layers[i]);
-  }
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
-  update_time();
+  update_screen();
 }
 
 static void in_recv_handler(DictionaryIterator *received, void *context) {
   settings->bgcolor = (GColor) dict_find(received, APPKEY_BGCOLOR)->value->int32;
-  settings->screen_mode = dict_find(received, APPKEY_DISPLAY)->value->int32;
-  settings->time_display = dict_find(received, APPKEY_HOUR24)->value->int32;
+  settings->screen_mode = (ScreenMode) dict_find(received, APPKEY_DISPLAY)->value->int32;
+  settings->time_display = (TimeDisplayMode) dict_find(received, APPKEY_HOUR24)->value->int32;
 
-  refresh_display_options();
-  update_time();
+  update_screen();
 }
 
 static void init(void) {
   settings = settings_create();
   persist_read_settings(settings);
-  init_positions();
 
   // React to settings message from phone
   app_message_register_inbox_received(in_recv_handler);

@@ -54,9 +54,9 @@ static void init_time_struct(struct tm ** time_struct) {
 }
 
 
-static GBitmap* bitmaps[4][4][10];
+static GBitmap* bitmaps[4][10];
 GBitmap* get_digit_bitmap(uint8_t position, uint8_t digit) {
-  if (!bitmaps[NoSym][position][digit]) {
+  if (!bitmaps[position][digit]) {
     Symmetry symmetry = NoSym;
     uint8_t sym_position;
     uint8_t symmetric;
@@ -107,31 +107,26 @@ GBitmap* get_digit_bitmap(uint8_t position, uint8_t digit) {
         break;
     }
     if (symmetry != NoSym) {
-      bitmaps[NoSym][position][digit] = gbitmap_create_by_symmetry(
+      bitmaps[position][digit] = gbitmap_create_by_symmetry(
         get_digit_bitmap(sym_position, symmetric), symmetry);
     } else {
-      bitmaps[NoSym][position][digit] = gbitmap_create_with_resource(DIGITS[position][digit]);
+      bitmaps[position][digit] = gbitmap_create_with_resource(DIGITS[position][digit]);
     }
   }
-  return bitmaps[NoSym][position][digit];
+  return bitmaps[position][digit];
 }
 
 GBitmap* get_digit_symmetry_bitmap(uint8_t position, uint8_t digit, Symmetry symmetry) {
-  if (!bitmaps[symmetry][position][digit]) {
-    bitmaps[symmetry][position][digit] = gbitmap_create_by_symmetry(
-      get_digit_bitmap(position, digit), symmetry
-    );
-  }
-  return bitmaps[symmetry][position][digit];
+  return gbitmap_create_by_symmetry(
+    get_digit_bitmap(position, digit), symmetry
+  );
 }
 
 void free_digit_bitmaps() {
-  for (Symmetry sym = 0; sym <= 3; sym++) {
-    for (int position = 0; position < 4; position++) {
-      for (int digit = 0; digit < 10; digit++) {
-        if (bitmaps[sym][position][digit]) {
-          gbitmap_destroy(bitmaps[sym][position][digit]);
-        }
+  for (int position = 0; position < 4; position++) {
+    for (int digit = 0; digit < 10; digit++) {
+      if (bitmaps[position][digit]) {
+        gbitmap_destroy(bitmaps[position][digit]);
       }
     }
   }
