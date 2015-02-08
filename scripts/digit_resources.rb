@@ -2,22 +2,20 @@
 
 require 'json'
 
-
+base_path = 'images/digits'
 type = 'png'
 
-files = %w(hours minutes).map do |t|
-  %w(first last).map do |p|
-    path = "images"
-    Dir["./resources/#{path}/#{t}_#{p}_*.#{type}"].map do |file|
-      basename = File.basename file
-      no_ext = File.basename file, ".#{type}"
+files =
+  (0..3).map do |position|
+    (0..10).map do |digit|
+      file = "#{base_path}/#{position}/d#{position}_#{digit}.#{type}"
+      next unless File.file? "./resources/#{file}"
       {
-        file: "#{path}/#{basename}",
-        name: "#{no_ext}".upcase,
+        file: "#{file}",
+        name: "DIGIT_#{position}_#{digit}",
         type: type
       }
     end
-  end
-end.flatten
+  end.flatten.compact
 
 puts JSON.pretty_generate files

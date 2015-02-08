@@ -1,18 +1,15 @@
 #include <pebble.h>
 #include "dimensions.h"
-#include "digits.h"
 #include "settings.h"
+#include "digits.h"
+#include "symmetry.h"
 
 static Settings *settings;
 
 static Window *window;
 static Layer *main_layer;
-static GBitmap *hours_first_bitmap;
-static GBitmap *hours_last_bitmap;
 static BitmapLayer *hours_first_layer;
 static BitmapLayer *hours_last_layer;
-static GBitmap *minutes_first_bitmap;
-static GBitmap *minutes_last_bitmap;
 static BitmapLayer *minutes_first_layer;
 static BitmapLayer *minutes_last_layer;
 static Layer *symmetry_layer;
@@ -84,24 +81,16 @@ static void symmetry_layer_update_proc(struct Layer *layer, GContext *ctx) {
 }
 
 static void update_time() {
-  if(hours_first_bitmap) gbitmap_destroy(hours_first_bitmap);
-  hours_first_bitmap = gbitmap_create_with_resource(hours_first_digit(NULL, hour24_mode()));
-  bitmap_layer_set_bitmap(hours_first_layer, hours_first_bitmap);
+  bitmap_layer_set_bitmap(hours_first_layer, hours_first_digit_bitmap(NULL, hour24_mode()));
   layer_mark_dirty(bitmap_layer_get_layer(hours_first_layer));
 
-  if(hours_last_bitmap) gbitmap_destroy(hours_last_bitmap);
-  hours_last_bitmap = gbitmap_create_with_resource(hours_last_digit(NULL, hour24_mode()));
-  bitmap_layer_set_bitmap(hours_last_layer, hours_last_bitmap);
+  bitmap_layer_set_bitmap(hours_last_layer, hours_last_digit_bitmap(NULL, hour24_mode()));
   layer_mark_dirty(bitmap_layer_get_layer(hours_last_layer));
 
-  if(minutes_first_bitmap) gbitmap_destroy(minutes_first_bitmap);
-  minutes_first_bitmap = gbitmap_create_with_resource(minutes_first_digit(NULL));
-  bitmap_layer_set_bitmap(minutes_first_layer, minutes_first_bitmap);
+  bitmap_layer_set_bitmap(minutes_first_layer, minutes_first_digit_bitmap(NULL));
   layer_mark_dirty(bitmap_layer_get_layer(minutes_first_layer));
 
-  if(minutes_last_bitmap) gbitmap_destroy(minutes_last_bitmap);
-  minutes_last_bitmap = gbitmap_create_with_resource(minutes_last_digit(NULL));
-  bitmap_layer_set_bitmap(minutes_last_layer, minutes_last_bitmap);
+  bitmap_layer_set_bitmap(minutes_last_layer, minutes_last_digit_bitmap(NULL));
   layer_mark_dirty(bitmap_layer_get_layer(minutes_last_layer));
 
   if(symmetry_layer) layer_mark_dirty(symmetry_layer);
@@ -177,10 +166,7 @@ static void window_load(Window *window) {
 
 static void window_unload(Window *window) {
   layer_destroy(main_layer);
-  gbitmap_destroy(hours_first_bitmap);
-  gbitmap_destroy(hours_last_bitmap);
-  gbitmap_destroy(minutes_first_bitmap);
-  gbitmap_destroy(minutes_last_bitmap);
+  free_digit_bitmaps();
   bitmap_layer_destroy(hours_first_layer);
   bitmap_layer_destroy(hours_last_layer);
   bitmap_layer_destroy(minutes_first_layer);
