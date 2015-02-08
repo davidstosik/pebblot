@@ -29,10 +29,12 @@ void update_screen() {
     hour24 = settings->time_display == TimeDispMode24H;
   }
 
-  state->digits[0] = hours_first_digit(NULL, hour24);
-  state->digits[1] = hours_last_digit(NULL, hour24);
-  state->digits[2] = minutes_first_digit(NULL);
-  state->digits[3] = minutes_last_digit(NULL);
+  time_t now = time(NULL);
+  struct tm * tm_now = localtime(&now);
+
+  for (int i = 0; i < 4; i++) {
+    state->digits[i] = get_time_digit(i, tm_now, hour24);
+  }
 
   state->symmetry = settings->screen_mode != ScreenModeSimple;
   state->inverted = settings->bgcolor == GColorWhite;
