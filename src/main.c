@@ -2,6 +2,7 @@
 #include "settings.h"
 #include "digits.h"
 #include "digit_bitmaps.h"
+#include "melted_bitmaps.h"
 #include "symmetry.h"
 #include "positions.h"
 
@@ -11,7 +12,7 @@ typedef struct  DisplayState {
   bool steel_offset;
   bool inverted;
   bool symmetry;
-  bool melt;
+  bool melted;
   bool pm_dot;
 } DisplayState;
 
@@ -37,6 +38,7 @@ void update_screen() {
   }
 
   state->symmetry = settings->screen_mode != ScreenModeSimple;
+  state->melted = settings->screen_mode == ScreenModeInsane;
   state->inverted = settings->bgcolor == GColorWhite;
   if (settings->steel_offset == SteelOffsetAuto) {
     state->steel_offset = watch_info_get_model() == WATCH_INFO_MODEL_PEBBLE_STEEL;
@@ -50,14 +52,23 @@ void update_screen() {
 }
 
 static void update_canvas(struct Layer *layer, GContext *ctx) {
-  graphics_context_set_compositing_mode(ctx, GCompOpAssignInverted);
+  graphics_context_set_compositing_mode(ctx, GCompOpSet);
   for (int i = 0; i < 4; i++) {
     graphics_draw_bitmap_in_rect(ctx, get_digit_bitmap(i, state->digits[i]), get_digit_position(i, state->steel_offset));
-    if (state->symmetry) {
-      GBitmap* symmetric = get_digit_symmetry_bitmap(i, state->digits[i], HorizontalSym);
-      graphics_draw_bitmap_in_rect(ctx, symmetric, get_symmetric_position(i, state->steel_offset));
-      gbitmap_destroy(symmetric);
+
+    if (state->melted) {
+      draw_melted_parts(i, state->digits[i], ctx, state->steel_offset);
     }
+
+  }
+  if (state->symmetry) {
+    GBitmap* buffer = graphics_capture_frame_buffer(ctx);
+    GRect bounds = buffer->bounds;
+    GBitmap* symmetric = gbitmap_create_by_symmetry(buffer, HorizontalSym);
+    graphics_release_frame_buffer(ctx, buffer);
+    graphics_context_set_compositing_mode(ctx, GCompOpOr);
+    graphics_draw_bitmap_in_rect(ctx, symmetric, bounds);
+    gbitmap_destroy(symmetric);
   }
 }
 
