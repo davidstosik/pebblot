@@ -6,10 +6,10 @@
 #include "symmetry.h"
 #include "positions.h"
 
-typedef struct  DisplayState {
-  GColor bgcolor;
+typedef struct DisplayState {
   uint8_t digits[4];
   bool steel_offset;
+  bool bt_connected;
   bool inverted;
   bool symmetry;
   bool melted;
@@ -23,6 +23,13 @@ static Layer *canvas;
 static InverterLayer *inverter;
 static GBitmap* digit_bitmaps[4];
 static uint8_t loaded_digits[4];
+
+void update_inverter(bool bt_connected) {
+  state->bt_connected = bt_connected;
+  state->inverted = (settings->bgcolor == GColorWhite) ^ !state->bt_connected;
+  layer_set_hidden(inverter_layer_get_layer(inverter), !state->inverted);
+  layer_mark_dirty(inverter_layer_get_layer(inverter));
+}
 
 void update_screen() {
   bool hour24;
@@ -41,7 +48,6 @@ void update_screen() {
 
   state->symmetry = settings->screen_mode != ScreenModeSimple;
   state->melted = settings->screen_mode == ScreenModeInsane;
-  state->inverted = settings->bgcolor == GColorWhite;
   if (settings->steel_offset == SteelOffsetAuto) {
     state->steel_offset = watch_info_get_model() == WATCH_INFO_MODEL_PEBBLE_STEEL;
   } else {
@@ -49,8 +55,7 @@ void update_screen() {
   }
 
   layer_mark_dirty(canvas);
-  layer_set_hidden(inverter_layer_get_layer(inverter), !state->inverted);
-  layer_mark_dirty(inverter_layer_get_layer(inverter));
+  update_inverter(bluetooth_connection_service_peek());
 }
 
 static void update_canvas(struct Layer *layer, GContext *ctx) {
@@ -118,6 +123,11 @@ static void in_recv_handler(DictionaryIterator *received, void *context) {
   update_screen();
 }
 
+static void bt_handler(bool connected) {
+  update_inverter(connected);
+  if (!connected) vibes_long_pulse();
+}
+
 static void init(void) {
   settings = settings_create();
   persist_read_settings(settings);
@@ -136,6 +146,7 @@ static void init(void) {
 
   // Register with TickTimerService
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
+  bluetooth_connection_service_subscribe(bt_handler);
 }
 
 static void deinit(void) {
@@ -144,6 +155,7 @@ static void deinit(void) {
   persist_write_settings(settings);
   settings_destroy(settings);
   free(state);
+  bluetooth_connection_service_unsubscribe();
 }
 
 int main(void) {
