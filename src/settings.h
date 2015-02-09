@@ -4,6 +4,7 @@
 #define APPKEY_STEEL_OFFSET 3
 #define APPKEY_BT_INVERT 4
 #define APPKEY_BT_VIBES 5
+#define APPKEY_HOUR_VIBES 6
 
 #define PERSIST_KEY_SETTINGS 0
 
@@ -32,6 +33,7 @@ typedef struct Settings {
   SteelOffset       steel_offset;
   bool              bt_invert;
   bool              bt_vibes;
+  bool              hour_vibes;
 } Settings;
 
 Settings* settings_create();

@@ -28,7 +28,7 @@ $ ->
   $('form#settings').submit (event) ->
     settings_hash = {}
     $('form#settings select').each () ->
-      settings_hash[$(this).prop('name')] = $(this).val()
+      settings_hash[$(this).prop('name')] = parseInt $(this).val()
       true# Don't stop the loop
     $('form#settings input[type=checkbox]').each () ->
       settings_hash[$(this).prop('name')] = $(this).is(':checked')

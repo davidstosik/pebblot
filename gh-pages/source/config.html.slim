@@ -32,18 +32,6 @@ javascript: "config"
             |Simple
 
     .form-group
-      label.col-sm-3.col-xs-6.control-label for="hour24"
-        |Hours display mode
-      .col-sm-3.col-xs-6
-        select.form-control name="hour24"
-          option value=-1
-            |Pebble setting
-          option value=1
-            |24 hours
-          option value=0
-            |12 hours
-
-    .form-group
       label.col-sm-3.col-xs-6.control-label for="steel_offset"
         |Vertical alignment
       .col-sm-3.col-xs-6
@@ -57,7 +45,7 @@ javascript: "config"
 
     .form-group
       label.control-label.col-sm-3.col-xs-6
-        |On Bluetooth disconnection
+        |On Bluetooth disconnect
 
       .col-sm-3.col-xs-6
         .checkbox
@@ -69,6 +57,25 @@ javascript: "config"
           label
             input type="checkbox" name="bt_vibes"
             |Vibrate
+
+    .form-group
+      label.col-sm-3.col-xs-6.control-label for="hour24"
+        |Hours display mode
+      .col-sm-3.col-xs-6
+        select.form-control name="hour24"
+          option value=-1
+            |Pebble setting
+          option value=1
+            |24 hours
+          option value=0
+            |12 hours
+
+    .form-group
+      .col-xs-offset-6.col-sm-offset-3.col-sm-3.col-xs-6
+        .checkbox
+          label
+            input type="checkbox" name="hour_vibes"
+            |Vibrate every hour
 
     pre.col-xs-12.debug.hidden
 

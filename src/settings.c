@@ -13,6 +13,7 @@ Settings* settings_create() {
   settings->steel_offset = SteelOffsetAuto;
   settings->bt_invert = true;
   settings->bt_vibes = true;
+  settings->hour_vibes = true;
   return settings;
 }
 

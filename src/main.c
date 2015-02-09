@@ -112,6 +112,7 @@ static void window_unload(Window *window) {
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_screen();
+  if (units_changed & HOUR_UNIT && settings->hour_vibes) vibes_double_pulse();
 }
 
 static void in_recv_handler(DictionaryIterator *received, void *context) {
@@ -121,6 +122,7 @@ static void in_recv_handler(DictionaryIterator *received, void *context) {
   settings->steel_offset = (SteelOffset) dict_find(received, APPKEY_STEEL_OFFSET)->value->int32;
   settings->bt_invert = (bool) dict_find(received, APPKEY_BT_INVERT)->value->int32;
   settings->bt_vibes = (bool) dict_find(received, APPKEY_BT_VIBES)->value->int32;
+  settings->hour_vibes = (bool) dict_find(received, APPKEY_HOUR_VIBES)->value->int32;
 
   update_screen();
 }

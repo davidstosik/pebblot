@@ -5,7 +5,8 @@
     "hour24": 2,
     "steel_offset": 3,
     "bt_invert": 4,
-    "bt_vibes": 5
+    "bt_vibes": 5,
+    "hour_vibes": 6
   },
   "capabilities": [
     "configurable"
