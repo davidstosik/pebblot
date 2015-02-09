@@ -11,6 +11,8 @@ Settings* settings_create() {
   settings->screen_mode = ScreenModeSymmetry;
   settings->time_display = TimeDispModeAuto;
   settings->steel_offset = SteelOffsetAuto;
+  settings->bt_invert = true;
+  settings->bt_vibes = true;
   return settings;
 }
 

@@ -26,7 +26,7 @@ static uint8_t loaded_digits[4];
 
 void update_inverter(bool bt_connected) {
   state->bt_connected = bt_connected;
-  state->inverted = (settings->bgcolor == GColorWhite) ^ !state->bt_connected;
+  state->inverted = (settings->bgcolor == GColorWhite) ^ (!state->bt_connected && settings->bt_invert);
   layer_set_hidden(inverter_layer_get_layer(inverter), !state->inverted);
   layer_mark_dirty(inverter_layer_get_layer(inverter));
 }
@@ -119,13 +119,15 @@ static void in_recv_handler(DictionaryIterator *received, void *context) {
   settings->screen_mode = (ScreenMode) dict_find(received, APPKEY_DISPLAY)->value->int32;
   settings->time_display = (TimeDisplayMode) dict_find(received, APPKEY_HOUR24)->value->int32;
   settings->steel_offset = (SteelOffset) dict_find(received, APPKEY_STEEL_OFFSET)->value->int32;
+  settings->bt_invert = (bool) dict_find(received, APPKEY_BT_INVERT)->value->int32;
+  settings->bt_vibes = (bool) dict_find(received, APPKEY_BT_VIBES)->value->int32;
 
   update_screen();
 }
 
 static void bt_handler(bool connected) {
   update_inverter(connected);
-  if (!connected) vibes_long_pulse();
+  if (!connected && settings->bt_vibes) vibes_long_pulse();
 }
 
 static void init(void) {

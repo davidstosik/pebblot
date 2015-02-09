@@ -3,7 +3,9 @@
     "bgcolor": 0,
     "display": 1,
     "hour24": 2,
-    "steel_offset": 3
+    "steel_offset": 3,
+    "bt_invert": 4,
+    "bt_vibes": 5
   },
   "capabilities": [
     "configurable"

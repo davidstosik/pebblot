@@ -2,6 +2,8 @@
 #define APPKEY_DISPLAY 1
 #define APPKEY_HOUR24  2
 #define APPKEY_STEEL_OFFSET 3
+#define APPKEY_BT_INVERT 4
+#define APPKEY_BT_VIBES 5
 
 #define PERSIST_KEY_SETTINGS 0
 
@@ -28,6 +30,8 @@ typedef struct Settings {
   ScreenMode        screen_mode;
   TimeDisplayMode   time_display;
   SteelOffset       steel_offset;
+  bool              bt_invert;
+  bool              bt_vibes;
 } Settings;
 
 Settings* settings_create();

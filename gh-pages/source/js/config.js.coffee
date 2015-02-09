@@ -1,41 +1,51 @@
 $ ->
 
   try
-    settings = JSON.parse decodeURIComponent $.urlParam 'settings'
+    settings_hash = JSON.parse decodeURIComponent $.urlParam 'settings'
   catch
-    settings = {}
+    settings_hash = {}
 
-  settings = {} unless typeof settings == 'object'
+  settings_hash = {} unless typeof settings_hash == 'object'
 
-  $('.debug').append "Received settings: " + JSON.stringify(settings) + "\n"
+  $('.debug').append "Received settings: " + JSON.stringify(settings_hash) + "\n"
 
   if $.urlParam 'debug'
     $('.debug').removeClass 'hidden'
     $('input#submit').addClass 'btn-danger'
 
-  $.each settings, (name, value) ->
+  $.each settings_hash, (name, value) ->
     element = $("[name=#{name}]")
-    if element.attr('type') == 'radio'
-      element.filter("[value=#{value}]").click()
+    if element.prop('tagName') == 'INPUT'
+      switch element.attr('type')
+        when 'radio'
+          element.filter("[value=#{value}]").click()
+          break
+        when 'checkbox'
+          element.prop 'checked', value
     else
       element.val(value)
 
   $('form#settings').submit (event) ->
-    settings = {}
-    $.each $('form').serializeArray(), ->
-      settings[this.name] = parseInt(this.value)
-    $('.debug').append "Prepared settings: " + JSON.stringify(settings) + "\n"
+    settings_hash = {}
+    $('form#settings select').each () ->
+      settings_hash[$(this).prop('name')] = $(this).val()
+      true# Don't stop the loop
+    $('form#settings input[type=checkbox]').each () ->
+      settings_hash[$(this).prop('name')] = $(this).is(':checked')
+      true# Don't stop the loop
 
-    mixpanel.people.set settings
+    $('.debug').append "Prepared settings: " + JSON.stringify(settings_hash) + "\n"
 
-    location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(settings))
+    mixpanel.people.set settings_hash
+
+    location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(settings_hash))
     $('.debug').append "Returned URL: " + location + "\n"
 
     if $('input#submit').hasClass 'btn-danger'
       $('.debug').append "Click again!\n"
       $('input#submit').removeClass 'btn-danger'
     else
-      mixpanel.track 'Submitted settings form', settings
+      mixpanel.track 'Submitted settings form', settings_hash
       document.location = location
 
     event.preventDefault()
@@ -46,7 +56,7 @@ $ ->
     ga 'set', '&uid', uid # Set the user ID using signed-in user_id.
     mixpanel.identify uid
 
-  event_props = (settings == {}) ? {empty_settings: true} || settings
+  event_props = (settings_hash == {}) ? {empty_settings: true} || settings_hash
   event_props['debug'] = $.urlParam 'debug'
   event_props['page'] = 'config'
   mixpanel.track 'Page', event_props

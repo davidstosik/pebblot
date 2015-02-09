@@ -55,8 +55,23 @@ javascript: "config"
           option value=1
             |Pebble Steel
 
+    .form-group
+      label.control-label.col-sm-3.col-xs-6
+        |On Bluetooth disconnection
+
+      .col-sm-3.col-xs-6
+        .checkbox
+          label
+            input type="checkbox" name="bt_invert"
+            |Invert screen
+
+        .checkbox
+          label
+            input type="checkbox" name="bt_vibes"
+            |Vibrate
+
     pre.col-xs-12.debug.hidden
 
     .col-xs-12.text-center
-      input#submit.btn.btn-primary type="submit" value="Submit"
+      input#submit.btn.btn-primary.btn-lg type="submit" value="Submit"
 
