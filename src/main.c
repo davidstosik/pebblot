@@ -21,6 +21,8 @@ static Settings *settings;
 static Window *window;
 static Layer *canvas;
 static InverterLayer *inverter;
+static GBitmap* digit_bitmaps[4];
+static uint8_t loaded_digits[4];
 
 void update_screen() {
   bool hour24;
@@ -54,7 +56,15 @@ void update_screen() {
 static void update_canvas(struct Layer *layer, GContext *ctx) {
   graphics_context_set_compositing_mode(ctx, GCompOpSet);
   for (int i = 0; i < 4; i++) {
-    graphics_draw_bitmap_in_rect(ctx, get_digit_bitmap(i, state->digits[i]), get_digit_position(i, state->steel_offset));
+
+    if (!(loaded_digits[i] == state->digits[i] && digit_bitmaps[i])) {
+      if(digit_bitmaps[i]) {
+        gbitmap_destroy(digit_bitmaps[i]);
+      }
+      digit_bitmaps[i] = get_digit_bitmap(i, state->digits[i]);
+      loaded_digits[i] = state->digits[i];
+    }
+    graphics_draw_bitmap_in_rect(ctx, digit_bitmaps[i], get_digit_position(i, state->steel_offset));
 
     if (state->melted) {
       draw_melted_parts(i, state->digits[i], ctx, state->steel_offset);
@@ -90,7 +100,9 @@ static void window_load(Window *window) {
 static void window_unload(Window *window) {
   layer_destroy(canvas);
   inverter_layer_destroy(inverter);
-  free_digit_bitmaps();
+  for (int i = 0; i < 4; i++) {
+    if(digit_bitmaps[i]) gbitmap_destroy(digit_bitmaps[i]);
+  }
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {

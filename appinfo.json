@@ -100,8 +100,18 @@
         "type": "png"
       },
       {
+        "file": "images/digits/2/d2_0.png",
+        "name": "DIGIT_2_0",
+        "type": "png"
+      },
+      {
         "file": "images/digits/2/d2_1.png",
         "name": "DIGIT_2_1",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/2/d2_2.png",
+        "name": "DIGIT_2_2",
         "type": "png"
       },
       {
@@ -115,8 +125,33 @@
         "type": "png"
       },
       {
+        "file": "images/digits/2/d2_5.png",
+        "name": "DIGIT_2_5",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/2/d2_6.png",
+        "name": "DIGIT_2_6",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/2/d2_9.png",
+        "name": "DIGIT_2_9",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/3/d3_0.png",
+        "name": "DIGIT_3_0",
+        "type": "png"
+      },
+      {
         "file": "images/digits/3/d3_1.png",
         "name": "DIGIT_3_1",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/3/d3_2.png",
+        "name": "DIGIT_3_2",
         "type": "png"
       },
       {
@@ -132,6 +167,11 @@
       {
         "file": "images/digits/3/d3_5.png",
         "name": "DIGIT_3_5",
+        "type": "png"
+      },
+      {
+        "file": "images/digits/3/d3_6.png",
+        "name": "DIGIT_3_6",
         "type": "png"
       },
       {
