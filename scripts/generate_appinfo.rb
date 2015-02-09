@@ -31,6 +31,13 @@ files += (0..3).map do |position|
     }
   end.flatten.compact
 
+end.flatten
+
+json = JSON.parse File.open('appinfo.json').read
+json['resources']['media'].select! do |resource|
+  !resource['name'].match /^(MELTED|DIGIT)_/
 end
 
-puts JSON.pretty_generate files.flatten
+json['resources']['media'] += files
+
+puts JSON.pretty_generate json
