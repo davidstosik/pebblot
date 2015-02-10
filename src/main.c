@@ -139,7 +139,7 @@ static void init(void) {
 
   // React to settings message from phone
   app_message_register_inbox_received(in_recv_handler);
-  app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
+  app_message_open(1 + (7+sizeof(uint32_t)) * APPKEY_COUNT, 0);
 
   window = window_create();
   window_set_window_handlers(window, (WindowHandlers) {
