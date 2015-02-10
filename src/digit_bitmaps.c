@@ -1,57 +1,40 @@
 #include <pebble.h>
 #include "digit_bitmaps.h"
 
-static const uint32_t DIGITS[4][10] = {
-  {
-    RESOURCE_ID_DIGIT_0_0,
-    RESOURCE_ID_DIGIT_0_1,
-    RESOURCE_ID_DIGIT_0_2,
-    0,
-    0,
-    RESOURCE_ID_DIGIT_0_5,
-    RESOURCE_ID_DIGIT_0_6,
-    0,
-    0,
-    RESOURCE_ID_DIGIT_0_9,
-  },{
-    RESOURCE_ID_DIGIT_1_0,
-    RESOURCE_ID_DIGIT_1_1,
-    RESOURCE_ID_DIGIT_1_2,
-    RESOURCE_ID_DIGIT_1_3,
-    RESOURCE_ID_DIGIT_1_4,
-    RESOURCE_ID_DIGIT_1_5,
-    RESOURCE_ID_DIGIT_1_6,
-    RESOURCE_ID_DIGIT_1_7,
-    RESOURCE_ID_DIGIT_1_8,
-    RESOURCE_ID_DIGIT_1_9,
-  },{
-    RESOURCE_ID_DIGIT_2_0,
-    RESOURCE_ID_DIGIT_2_1,
-    RESOURCE_ID_DIGIT_2_2,
-    RESOURCE_ID_DIGIT_2_3,
-    RESOURCE_ID_DIGIT_2_4,
-    RESOURCE_ID_DIGIT_2_5,
-    RESOURCE_ID_DIGIT_2_6,
-    0,
-    0,
-    RESOURCE_ID_DIGIT_2_9,
-  },{
-    RESOURCE_ID_DIGIT_3_0,
-    RESOURCE_ID_DIGIT_3_1,
-    RESOURCE_ID_DIGIT_3_2,
-    RESOURCE_ID_DIGIT_3_3,
-    RESOURCE_ID_DIGIT_3_4,
-    RESOURCE_ID_DIGIT_3_5,
-    RESOURCE_ID_DIGIT_3_6,
-    RESOURCE_ID_DIGIT_3_7,
-    RESOURCE_ID_DIGIT_3_8,
-    RESOURCE_ID_DIGIT_3_9,
+GRect digit_sprite_bounds(uint8_t position, uint8_t digit) {
+  int x, y, w, h;
+  switch (position) {
+    case 0:
+    case 3:
+      w = 27;
+      h = 59;
+      y = 0;
+      x = (position == 3) ? 0 : 10 * w;
+      x += digit * w;
+      break;
+    case 1:
+    case 2:
+      w = 25;
+      h = 55;
+      y = 59;
+      x = (position == 1) ? 0 : 10 * w;
+      x += digit * w;
+      break;
+    default: // Should not happen
+      x = y = w = h = 0;
+      break;
   }
-};
+  return GRect(x, y, w, h);
+}
 
-/*static GBitmap* bitmaps[4][10];*/
+static GBitmap *sprite;
 GBitmap* get_digit_bitmap(uint8_t position, uint8_t digit) {
-  return gbitmap_create_with_resource(DIGITS[position][digit]);
+  if (!sprite) sprite = gbitmap_create_with_resource(RESOURCE_ID_SPRITE);
+  return gbitmap_create_as_sub_bitmap(sprite, digit_sprite_bounds(position, digit));
+}
+
+void destroy_sprite() {
+  gbitmap_destroy(sprite);
 }
 
 GBitmap* get_digit_symmetry_bitmap(uint8_t position, uint8_t digit, Symmetry symmetry) {

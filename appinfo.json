@@ -23,176 +23,6 @@
         "type": "png"
       },
       {
-        "file": "images/digits/0/d0_0.png",
-        "name": "DIGIT_0_0",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/0/d0_1.png",
-        "name": "DIGIT_0_1",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/0/d0_2.png",
-        "name": "DIGIT_0_2",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/0/d0_5.png",
-        "name": "DIGIT_0_5",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/0/d0_6.png",
-        "name": "DIGIT_0_6",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/0/d0_9.png",
-        "name": "DIGIT_0_9",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_0.png",
-        "name": "DIGIT_1_0",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_1.png",
-        "name": "DIGIT_1_1",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_2.png",
-        "name": "DIGIT_1_2",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_3.png",
-        "name": "DIGIT_1_3",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_4.png",
-        "name": "DIGIT_1_4",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_5.png",
-        "name": "DIGIT_1_5",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_6.png",
-        "name": "DIGIT_1_6",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_7.png",
-        "name": "DIGIT_1_7",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_8.png",
-        "name": "DIGIT_1_8",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/1/d1_9.png",
-        "name": "DIGIT_1_9",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/2/d2_0.png",
-        "name": "DIGIT_2_0",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/2/d2_1.png",
-        "name": "DIGIT_2_1",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/2/d2_2.png",
-        "name": "DIGIT_2_2",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/2/d2_3.png",
-        "name": "DIGIT_2_3",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/2/d2_4.png",
-        "name": "DIGIT_2_4",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/2/d2_5.png",
-        "name": "DIGIT_2_5",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/2/d2_6.png",
-        "name": "DIGIT_2_6",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/2/d2_9.png",
-        "name": "DIGIT_2_9",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_0.png",
-        "name": "DIGIT_3_0",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_1.png",
-        "name": "DIGIT_3_1",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_2.png",
-        "name": "DIGIT_3_2",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_3.png",
-        "name": "DIGIT_3_3",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_4.png",
-        "name": "DIGIT_3_4",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_5.png",
-        "name": "DIGIT_3_5",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_6.png",
-        "name": "DIGIT_3_6",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_7.png",
-        "name": "DIGIT_3_7",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_8.png",
-        "name": "DIGIT_3_8",
-        "type": "png"
-      },
-      {
-        "file": "images/digits/3/d3_9.png",
-        "name": "DIGIT_3_9",
-        "type": "png"
-      },
-      {
         "file": "images/melted/0/m0_left_top.png",
         "name": "MELTED_0_LEFT_TOP",
         "type": "png"
@@ -260,6 +90,11 @@
       {
         "file": "images/melted/3/m3_bottom_right.png",
         "name": "MELTED_3_BOTTOM_RIGHT",
+        "type": "png"
+      },
+      {
+        "file": "images/sprite.png",
+        "name": "SPRITE",
         "type": "png"
       }
     ]

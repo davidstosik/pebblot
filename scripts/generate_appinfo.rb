@@ -5,18 +5,19 @@ require 'json'
 type = 'png'
 
 base_path = 'images/digits'
-files =
-  (0..3).map do |position|
-    (0..10).map do |digit|
-      file = "#{base_path}/#{position}/d#{position}_#{digit}.#{type}"
-      next unless File.file? "./resources/#{file}"
-      {
-        file: "#{file}",
-        name: "DIGIT_#{position}_#{digit}",
-        type: type
-      }
-    end
-  end.flatten.compact
+files = []
+
+#files += (0..3).map do |position|
+  #(0..10).map do |digit|
+    #file = "#{base_path}/#{position}/d#{position}_#{digit}.#{type}"
+    #next unless File.file? "./resources/#{file}"
+    #{
+      #file: "#{file}",
+      #name: "DIGIT_#{position}_#{digit}",
+      #type: type
+    #}
+  #end
+#end.flatten.compact
 
 sides = %w(top bottom left right)
 part = sides + %w(center)
@@ -30,7 +31,6 @@ files += (0..3).map do |position|
       type: type,
     }
   end.flatten.compact
-
 end.flatten
 
 json = JSON.parse File.open('appinfo.json').read
