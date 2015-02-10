@@ -28,9 +28,13 @@ GRect digit_sprite_bounds(uint8_t position, uint8_t digit) {
 }
 
 static GBitmap *sprite;
-GBitmap* get_digit_bitmap(uint8_t position, uint8_t digit) {
+GBitmap* get_sprite(GRect bounds) {
   if (!sprite) sprite = gbitmap_create_with_resource(RESOURCE_ID_SPRITE);
-  return gbitmap_create_as_sub_bitmap(sprite, digit_sprite_bounds(position, digit));
+  return gbitmap_create_as_sub_bitmap(sprite, bounds);
+}
+
+GBitmap* get_digit_bitmap(uint8_t position, uint8_t digit) {
+  return get_sprite(digit_sprite_bounds(position, digit));
 }
 
 void destroy_sprite() {

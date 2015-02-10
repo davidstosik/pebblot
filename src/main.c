@@ -72,7 +72,7 @@ static void update_canvas(struct Layer *layer, GContext *ctx) {
     graphics_draw_bitmap_in_rect(ctx, digit_bitmaps[i], get_digit_position(i, state->steel_offset));
 
     if (state->melted) {
-      draw_melted_parts(i, state->digits[i], ctx, state->steel_offset);
+      draw_digit_external_melted_parts(i, state->digits[i], ctx, state->steel_offset);
     }
 
   }
