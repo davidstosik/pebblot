@@ -241,6 +241,10 @@
             <filename>sprites/melted/ext/melted_ext3-right_bottom.png</filename>
             <filename>sprites/melted/ext/melted_ext3-right_center.png</filename>
             <filename>sprites/melted/ext/melted_ext3-right_top.png</filename>
+            <filename>sprites/melted/corner/melted_corner_0_1_bottom_left.png</filename>
+            <filename>sprites/melted/corner/melted_corner_0_1_top_left.png</filename>
+            <filename>sprites/melted/corner/melted_corner_generic_top_right.png</filename>
+            <filename>sprites/melted/horizline/melted_horizline_0_1_top.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
