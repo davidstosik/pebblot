@@ -5,6 +5,7 @@
 #include "melted_bitmaps.h"
 #include "symmetry.h"
 #include "positions.h"
+#include "spritesheet.h"
 
 typedef struct DisplayState {
   uint8_t digits[4];
