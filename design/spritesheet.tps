@@ -198,53 +198,7 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>sprites/digits/digit3-0.png</filename>
-            <filename>sprites/digits/digit3-1.png</filename>
-            <filename>sprites/digits/digit3-2.png</filename>
-            <filename>sprites/digits/digit3-3.png</filename>
-            <filename>sprites/digits/digit3-4.png</filename>
-            <filename>sprites/digits/digit3-5.png</filename>
-            <filename>sprites/digits/digit3-6.png</filename>
-            <filename>sprites/digits/digit3-7.png</filename>
-            <filename>sprites/digits/digit3-8.png</filename>
-            <filename>sprites/digits/digit3-9.png</filename>
-            <filename>sprites/digits/digit1-0.png</filename>
-            <filename>sprites/digits/digit1-1.png</filename>
-            <filename>sprites/digits/digit1-2.png</filename>
-            <filename>sprites/digits/digit1-3.png</filename>
-            <filename>sprites/digits/digit1-4.png</filename>
-            <filename>sprites/digits/digit1-5.png</filename>
-            <filename>sprites/digits/digit1-6.png</filename>
-            <filename>sprites/digits/digit1-7.png</filename>
-            <filename>sprites/digits/digit1-8.png</filename>
-            <filename>sprites/digits/digit1-9.png</filename>
-            <filename>sprites/digits/digit0-0.png</filename>
-            <filename>sprites/digits/digit0-1.png</filename>
-            <filename>sprites/digits/digit0-2.png</filename>
-            <filename>sprites/digits/digit2-0.png</filename>
-            <filename>sprites/digits/digit2-1.png</filename>
-            <filename>sprites/digits/digit2-2.png</filename>
-            <filename>sprites/digits/digit2-3.png</filename>
-            <filename>sprites/digits/digit2-4.png</filename>
-            <filename>sprites/digits/digit2-5.png</filename>
-            <filename>sprites/melted/ext/melted_ext0-left_top.png</filename>
-            <filename>sprites/melted/ext/melted_ext0-top_right.png</filename>
-            <filename>sprites/melted/ext/melted_ext1-right_bottom.png</filename>
-            <filename>sprites/melted/ext/melted_ext1-right_center.png</filename>
-            <filename>sprites/melted/ext/melted_ext1-right_top.png</filename>
-            <filename>sprites/melted/ext/melted_ext1-top_left.png</filename>
-            <filename>sprites/melted/ext/melted_ext2-bottom_right.png</filename>
-            <filename>sprites/melted/ext/melted_ext2-left_bottom.png</filename>
-            <filename>sprites/melted/ext/melted_ext2-left_center.png</filename>
-            <filename>sprites/melted/ext/melted_ext2-left_top.png</filename>
-            <filename>sprites/melted/ext/melted_ext3-bottom_right.png</filename>
-            <filename>sprites/melted/ext/melted_ext3-right_bottom.png</filename>
-            <filename>sprites/melted/ext/melted_ext3-right_center.png</filename>
-            <filename>sprites/melted/ext/melted_ext3-right_top.png</filename>
-            <filename>sprites/melted/corner/melted_corner_0_1_bottom_left.png</filename>
-            <filename>sprites/melted/corner/melted_corner_0_1_top_left.png</filename>
-            <filename>sprites/melted/corner/melted_corner_generic_top_right.png</filename>
-            <filename>sprites/melted/horizline/melted_horizline_0_1_top.png</filename>
+            <filename>sprites</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

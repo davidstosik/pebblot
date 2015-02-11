@@ -29,11 +29,11 @@ void draw_digit_external_melted_parts(uint8_t position, uint8_t digit, GContext 
     case 0:
       switch (digit) {
         case 1:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT0_TOP_RIGHT;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_0_TOP_RIGHT;
           positions[0] = (GPoint)POSITION_MELTED_0_TOP_RIGHT;
           break;
         case 2:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT0_LEFT_TOP;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_0_LEFT_TOP;
           positions[0] = (GPoint)POSITION_MELTED_0_LEFT_TOP;
           break;
         default:
@@ -44,21 +44,21 @@ void draw_digit_external_melted_parts(uint8_t position, uint8_t digit, GContext 
     case 1:
       switch (digit) {
         case 4:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT1_TOP_LEFT;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_1_TOP_LEFT;
           positions[0] = (GPoint)POSITION_MELTED_1_TOP_LEFT;
           break;
         case 2:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT1_RIGHT_BOTTOM;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_1_RIGHT_BOTTOM;
           positions[0] = (GPoint)POSITION_MELTED_1_RIGHT_BOTTOM;
           break;
         case 3:
         case 7:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT1_RIGHT_CENTER;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_1_RIGHT_CENTER;
           positions[0] = (GPoint)POSITION_MELTED_1_RIGHT_CENTER;
           break;
         case 5:
         case 6:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT1_RIGHT_TOP;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_1_RIGHT_TOP;
           positions[0] = (GPoint)POSITION_MELTED_1_RIGHT_TOP;
           break;
         default:
@@ -70,19 +70,19 @@ void draw_digit_external_melted_parts(uint8_t position, uint8_t digit, GContext 
       switch (digit) {
         case 1:
         case 4:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT2_BOTTOM_RIGHT;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_2_BOTTOM_RIGHT;
           positions[0] = (GPoint)POSITION_MELTED_2_BOTTOM_RIGHT;
           break;
         case 2:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT2_LEFT_TOP;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_2_LEFT_TOP;
           positions[0] = (GPoint)POSITION_MELTED_2_LEFT_TOP;
           break;
         case 3:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT2_LEFT_CENTER;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_2_LEFT_CENTER;
           positions[0] = (GPoint)POSITION_MELTED_2_LEFT_CENTER;
           break;
         case 5:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT2_LEFT_BOTTOM;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_2_LEFT_BOTTOM;
           positions[0] = (GPoint)POSITION_MELTED_2_LEFT_BOTTOM;
           break;
         default:
@@ -94,26 +94,26 @@ void draw_digit_external_melted_parts(uint8_t position, uint8_t digit, GContext 
       switch (digit) {
         case 1:
         case 4:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT3_BOTTOM_RIGHT;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_3_BOTTOM_RIGHT;
           positions[0] = (GPoint)POSITION_MELTED_3_BOTTOM_RIGHT;
           break;
         case 2:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT3_RIGHT_BOTTOM;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_3_RIGHT_BOTTOM;
           positions[0] = (GPoint)POSITION_MELTED_3_RIGHT_BOTTOM;
           break;
         case 3:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT3_RIGHT_CENTER;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_3_RIGHT_CENTER;
           positions[0] = (GPoint)POSITION_MELTED_3_RIGHT_CENTER;
           break;
         case 5:
         case 6:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT3_RIGHT_TOP;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_3_RIGHT_TOP;
           positions[0] = (GPoint)POSITION_MELTED_3_RIGHT_TOP;
           break;
         case 7:
-          melted_sprites[0] = SPRITE_ID_MELTED_EXT3_RIGHT_CENTER;
+          melted_sprites[0] = SPRITE_ID_MELTED_EXT_3_RIGHT_CENTER;
           positions[0] = (GPoint)POSITION_MELTED_3_RIGHT_CENTER;
-          melted_sprites[1] = SPRITE_ID_MELTED_EXT3_BOTTOM_RIGHT;
+          melted_sprites[1] = SPRITE_ID_MELTED_EXT_3_BOTTOM_RIGHT;
           positions[1] = (GPoint)POSITION_MELTED_3_BOTTOM_RIGHT;
           count = 2;
           break;

@@ -2,7 +2,7 @@
 //
 // Sprite sheet: spritesheet.png (448 x 114)
 //
-// $TexturePacker:SmartUpdate:578ac146894a317c45885a5b00c4bf2b:41c870d11d07f924091a8f69f720def2:f255187afaed5e6299dc3d2f34bbb167$
+// $TexturePacker:SmartUpdate:934ba6d176a286f1b6a540bd4c707f11:41c870d11d07f924091a8f69f720def2:f255187afaed5e6299dc3d2f34bbb167$
 
 #include <pebble.h>
 #include "spritesheet.h"
