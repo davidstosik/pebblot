@@ -157,7 +157,7 @@ static void init(void) {
 static void deinit(void) {
   window_destroy(window);
 
-  destroy_sprite();
+  texture_destroy_all();
   persist_write_settings(settings);
   settings_destroy(settings);
   free(state);

@@ -23,8 +23,8 @@
         "type": "png"
       },
       {
-        "file": "images/spritesheet.png",
-        "name": "SPRITE",
+        "file": "images/spritesheet0.png",
+        "name": "SPRITESHEET0",
         "type": "png"
       }
     ]

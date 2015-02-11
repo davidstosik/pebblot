@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>Pebble</string>
         <key>textureFileName</key>
-        <filename>../resources/images/spritesheet.png</filename>
+        <filename>../resources/images/spritesheet{n}.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -93,7 +93,7 @@
         <key>fixedTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>448</int>
+            <int>416</int>
             <key>height</key>
             <int>114</int>
         </QSize>
@@ -159,7 +159,7 @@
             </struct>
         </map>
         <key>multiPack</key>
-        <false/>
+        <true/>
         <key>forceIdenticalLayout</key>
         <false/>
         <key>outputFormat</key>
