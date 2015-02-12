@@ -2,7 +2,7 @@
 //
 // Sprite sheet:  ( x )
 //
-// $TexturePacker:SmartUpdate:932145d16789be4718a98cc1bcb160a7:dbdbbd3af63169d09a75bb515a13bda7:0168b9826cd38de9376e08cf5cc43126$
+// $TexturePacker:SmartUpdate:74c369f875ef7b124c5b2c018c1e1e58:4e9fbe3bf366c4e1961729853ac0493a:0168b9826cd38de9376e08cf5cc43126$
 #pragma once
 #include <pebble.h>
 #include "texture_packer.h"
@@ -45,26 +45,27 @@ enum {
   SPRITE_ID_DIGIT_2_4,
   SPRITE_ID_DIGIT_2_5,
   SPRITE_ID_MELTED_EXT_3_RIGHT_CENTER,
-  SPRITE_ID_MELTED_EXT_1_RIGHT_CENTER,
-  SPRITE_ID_MELTED_EXT_3_BOTTOM_RIGHT,
+  SPRITE_ID_MELTED_HORIZLINE_0_1_CENTER,
+  SPRITE_ID_MELTED_HORIZLINE_2_3_CENTER,
+  SPRITE_ID_MELTED_HORIZLINE_0_1_BOTTOM,
+  SPRITE_ID_MELTED_HORIZLINE_2_3_TOP,
   SPRITE_ID_MELTED_EXT_1_RIGHT_BOTTOM,
+  SPRITE_ID_MELTED_EXT_2_LEFT_TOP,
   SPRITE_ID_MELTED_EXT_0_TOP_RIGHT,
+  SPRITE_ID_MELTED_EXT_1_RIGHT_CENTER,
+  SPRITE_ID_MELTED_EXT_2_LEFT_CENTER,
+  SPRITE_ID_MELTED_EXT_3_RIGHT_TOP,
   SPRITE_ID_MELTED_EXT_0_LEFT_TOP,
-  SPRITE_ID_MELTED_HORIZLINE_0_1_TOP,
+  SPRITE_ID_MELTED_EXT_3_BOTTOM_RIGHT,
   SPRITE_ID_MELTED_EXT_1_TOP_LEFT,
   SPRITE_ID_MELTED_EXT_2_BOTTOM_RIGHT,
-  SPRITE_ID_MELTED_EXT_3_RIGHT_TOP,
-  SPRITE_ID_MELTED_EXT_1_RIGHT_TOP,
-  SPRITE_ID_MELTED_EXT_2_LEFT_TOP,
+  SPRITE_ID_MELTED_HORIZLINE_0_1_TOP,
+  SPRITE_ID_MELTED_HORIZLINE_2_3_BOTTOM,
   SPRITE_ID_MELTED_EXT_3_RIGHT_BOTTOM,
-  SPRITE_ID_MELTED_HORIZLINE_0_1_CENTER,
-  SPRITE_ID_MELTED_EXT_2_LEFT_CENTER,
+  SPRITE_ID_MELTED_EXT_1_RIGHT_TOP,
   SPRITE_ID_MELTED_EXT_2_LEFT_BOTTOM,
   SPRITE_ID_MELTED_CORNER_GENERIC_BOTTOM_LEFT,
-  SPRITE_ID_MELTED_CORNER_0_1_CENTER_TOP_LEFT,
-  SPRITE_ID_MELTED_CORNER_0_1_TOP_TOP_LEFT,
-  SPRITE_ID_MELTED_CORNER_0_1_CENTER_BOTTOM_LEFT,
-  SPRITE_ID_MELTED_CORNER_0_1_TOP_BOTTOM_LEFT,
+  SPRITE_ID_MELTED_CORNER_GENERIC_BOTTOM_RIGHT,
   SPRITE_ID_MELTED_CORNER_GENERIC_TOP_LEFT,
   SPRITE_ID_MELTED_CORNER_GENERIC_TOP_RIGHT,
 };
@@ -74,7 +75,7 @@ static const ResourceId texture_resources[] = {
 };
 
 static const uint16_t sprites_per_texture[] = {
-  52,
+  53,
 };
 
 static const GRect sprite_rects[] = {
@@ -108,27 +109,28 @@ static const GRect sprite_rects[] = {
   { { 350 ,  59 }, { 25, 55 } },
   { { 351 ,  0 }, { 25, 55 } },
   { { 376 ,  0 }, { 3, 28 } },
-  { { 379 ,  0 }, { 7, 20 } },
-  { { 386 ,  0 }, { 11, 16 } },
-  { { 397 ,  0 }, { 13, 13 } },
-  { { 376 ,  28 }, { 10, 15 } },
-  { { 376 ,  43 }, { 11, 12 } },
-  { { 375 ,  55 }, { 12, 14 } },
-  { { 375 ,  69 }, { 10, 15 } },
-  { { 375 ,  84 }, { 10, 15 } },
-  { { 375 ,  99 }, { 7, 15 } },
-  { { 382 ,  99 }, { 10, 13 } },
-  { { 397 ,  13 }, { 13, 13 } },
-  { { 386 ,  16 }, { 11, 12 } },
-  { { 386 ,  28 }, { 13, 13 } },
-  { { 387 ,  41 }, { 12, 12 } },
-  { { 387 ,  53 }, { 10, 13 } },
-  { { 379 ,  20 }, { 7, 7 } },
-  { { 399 ,  26 }, { 9, 9 } },
-  { { 399 ,  35 }, { 9, 9 } },
-  { { 399 ,  44 }, { 10, 7 } },
-  { { 387 ,  66 }, { 10, 7 } },
-  { { 385 ,  73 }, { 7, 7 } },
-  { { 385 ,  80 }, { 7, 7 } },
+  { { 379 ,  0 }, { 16, 14 } },
+  { { 379 ,  14 }, { 16, 14 } },
+  { { 376 ,  28 }, { 15, 13 } },
+  { { 395 ,  0 }, { 15, 13 } },
+  { { 376 ,  41 }, { 13, 13 } },
+  { { 395 ,  13 }, { 13, 13 } },
+  { { 391 ,  28 }, { 10, 15 } },
+  { { 401 ,  26 }, { 7, 20 } },
+  { { 389 ,  43 }, { 12, 12 } },
+  { { 408 ,  13 }, { 7, 15 } },
+  { { 401 ,  46 }, { 11, 12 } },
+  { { 375 ,  58 }, { 11, 16 } },
+  { { 375 ,  74 }, { 10, 15 } },
+  { { 375 ,  89 }, { 10, 15 } },
+  { { 386 ,  55 }, { 12, 14 } },
+  { { 398 ,  58 }, { 12, 14 } },
+  { { 386 ,  69 }, { 11, 12 } },
+  { { 385 ,  81 }, { 10, 13 } },
+  { { 385 ,  94 }, { 10, 13 } },
+  { { 408 ,  28 }, { 7, 7 } },
+  { { 375 ,  107 }, { 7, 7 } },
+  { { 382 ,  107 }, { 7, 7 } },
+  { { 389 ,  107 }, { 7, 7 } },
 };
 
