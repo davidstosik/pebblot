@@ -7,7 +7,7 @@ size_t sizeof_settings() {
 
 Settings* settings_create() {
   Settings* settings = malloc(sizeof_settings());
-  settings->bgcolor = GColorBlack;
+  settings->bgcolor = GColorWhite;
   settings->screen_mode = ScreenModeSymmetry;
   settings->time_display = TimeDispModeAuto;
   settings->steel_offset = SteelOffsetAuto;
