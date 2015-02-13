@@ -101,8 +101,8 @@
   },
   "shortName": "Pebblot",
   "uuid": "31718374-a2be-463e-84a5-efed3a0f006b",
-  "versionCode": 1,
-  "versionLabel": "1.0",
+  "versionCode": 2,
+  "versionLabel": "2.0",
   "watchapp": {
     "watchface": true
   }
