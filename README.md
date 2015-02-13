@@ -23,6 +23,8 @@ mirrored, then melted together.
  - 12/24 hour mode (uses the Pebble's setting by default, but can be forced)
  - 2 display modes: simple and symmetric
  - Configurable background color (via a watch face setting)
+ - Vibrate every hour
+ - Notify Bluetooth disconnect (vibration and screen color inversion)
 
 ## How to get it?
 
@@ -36,8 +38,6 @@ to get latest improvements (code stability is only guaranteed on official releas
 
  - Add a simple PM indicator when in 12-hour mode
  - Add the third display mode, where digits melt together
- - Vibrate every hour
- - Notify Bluetooth disconnect (vibration and screen color inversion)
  - Display the date (on tap?)
  - Animate transitions with a morphing effect
 
