@@ -2,3 +2,6 @@
 	path = gh-pages/build
 	url = git@github.com:dstosik/pebble-rorschach.git
 	branch = gh-pages
+[submodule "TexturePackerPebble"]
+	path = TexturePackerPebble
+	url = git@github.com:dstosik/TexturePackerPebble.git

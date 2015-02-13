@@ -1,1 +1,1 @@
-../../TexturePackerExporters/TexturePackerPebble/texture_packer.c
+../TexturePackerPebble/texture_packer.c
