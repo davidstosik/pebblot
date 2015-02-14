@@ -2,7 +2,7 @@
 //
 // Sprite sheet:  ( x )
 //
-// $TexturePacker:SmartUpdate:e86f555b907fd0a406b077665f0234c2:3a44ade3f1953776f3ea50ab2af19f32:0168b9826cd38de9376e08cf5cc43126$
+// $TexturePacker:SmartUpdate:a6598754d7e333861b5f4ed1e08086ee:aaede271970d93ddb7213e16d36f343d:0168b9826cd38de9376e08cf5cc43126$
 #pragma once
 #include <pebble.h>
 #include "texture_packer.h"
