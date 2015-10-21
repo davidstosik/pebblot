@@ -128,10 +128,9 @@ void draw_melted_parts(uint8_t position, uint8_t digit, GContext *ctx, bool stee
   for (int i = 0; i < count; i++) {
     //FIXME keep these resources in memory too?
     GBitmap* melted_part = gbitmap_create_with_resource(melted_resource_ids[i]);
-    GRect rect = (GRect){ positions[i], melted_part->bounds.size };
+    GRect rect = (GRect){ positions[i],  gbitmap_get_bounds(melted_part).size };
     if (steel_offset) rect.origin.y += SteelOffsetPixels;
     graphics_draw_bitmap_in_rect(ctx, melted_part, rect);
     gbitmap_destroy(melted_part);
   }
 }
-

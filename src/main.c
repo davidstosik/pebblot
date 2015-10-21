@@ -5,6 +5,7 @@
 /*#include "melted_bitmaps.h"*/
 #include "symmetry.h"
 #include "positions.h"
+#include "effect_layer/effect_layer.h"
 
 typedef struct DisplayState {
   uint8_t digits[4];
@@ -26,7 +27,7 @@ static uint8_t loaded_digits[4];
 
 void update_inverter(bool bt_connected) {
   state->bt_connected = bt_connected;
-  state->inverted = (settings->bgcolor == GColorWhite) ^ (!state->bt_connected && settings->bt_invert);
+  state->inverted = gcolor_equal(settings->bgcolor, GColorWhite) ^ (!state->bt_connected && settings->bt_invert);
   layer_set_hidden(inverter_layer_get_layer(inverter), !state->inverted);
   layer_mark_dirty(inverter_layer_get_layer(inverter));
 }
@@ -78,7 +79,7 @@ static void update_canvas(struct Layer *layer, GContext *ctx) {
   }
   if (state->symmetry) {
     GBitmap* buffer = graphics_capture_frame_buffer(ctx);
-    GRect bounds = buffer->bounds;
+    GRect bounds = gbitmap_get_bounds(buffer);
     GBitmap* symmetric = gbitmap_create_by_symmetry(buffer, HorizontalSym);
     graphics_release_frame_buffer(ctx, buffer);
     graphics_context_set_compositing_mode(ctx, GCompOpOr);
@@ -116,7 +117,7 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 }
 
 static void in_recv_handler(DictionaryIterator *received, void *context) {
-  settings->bgcolor = (GColor) dict_find(received, APPKEY_BGCOLOR)->value->int32;
+  settings->bgcolor = dict_find(received, APPKEY_BGCOLOR)->value->int32 == 1 ? GColorBlack : GColorWhite;
   settings->screen_mode = (ScreenMode) dict_find(received, APPKEY_DISPLAY)->value->int32;
   settings->time_display = (TimeDisplayMode) dict_find(received, APPKEY_HOUR24)->value->int32;
   settings->steel_offset = (SteelOffset) dict_find(received, APPKEY_STEEL_OFFSET)->value->int32;

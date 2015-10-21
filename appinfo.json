@@ -1,4 +1,14 @@
 {
+  "uuid": "31718374-a2be-463e-84a5-efed3a0f006b",
+  "shortName": "Pebblot",
+  "longName": "Pebblot",
+  "companyName": "David Stosik",
+  "versionLabel": "2.1",
+  "sdkVersion": "3",
+  "targetPlatforms": ["aplite"],
+  "watchapp": {
+    "watchface": true
+  },
   "appKeys": {
     "bgcolor": 0,
     "display": 1,
@@ -11,9 +21,6 @@
   "capabilities": [
     "configurable"
   ],
-  "companyName": "David Stosik",
-  "longName": "Pebblot",
-  "projectType": "native",
   "resources": {
     "media": [
       {
@@ -98,12 +105,5 @@
         "type": "png"
       }
     ]
-  },
-  "shortName": "Pebblot",
-  "uuid": "31718374-a2be-463e-84a5-efed3a0f006b",
-  "versionCode": 2,
-  "versionLabel": "2.0",
-  "watchapp": {
-    "watchface": true
   }
 }
